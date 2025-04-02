@@ -133,11 +133,17 @@ body {
     }
 }
 
-/* Print Styles */
+/* Print and PDF Generation Styles */
 @media print {
+    body {
+        background-color: white !important;
+    }
+    
     header, footer, .cta-section {
         background-color: white !important;
         color: black !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
     }
     
     .timeline-container::after,
@@ -152,6 +158,8 @@ body {
     
     section {
         page-break-inside: avoid;
+        margin-bottom: 1.5cm;
+        background-color: white !important;
     }
     
     .shadow-md, .shadow-lg {
@@ -167,6 +175,58 @@ body {
         display: block;
         margin: 0 auto;
     }
+    
+    /* Hide elements not needed in PDF */
+    #generate-pdf, 
+    #shareButton,
+    .timeline-item button {
+        display: none !important;
+    }
+    
+    /* Show all content for PDF */
+    .timeline-item ul.hidden,
+    .skills-panel.hidden {
+        display: block !important;
+        opacity: 1 !important;
+        max-height: none !important;
+    }
+    
+    /* Better spacing for print */
+    .timeline-item {
+        margin-bottom: 1.5cm;
+    }
+    
+    .container {
+        max-width: 100% !important;
+    }
+    
+    /* Ensure good page breaks */
+    h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    img, svg {
+        page-break-inside: avoid;
+    }
+    
+    /* Force background colors to print */
+    .bg-blue-600, .bg-blue-900 {
+        background-color: #1a4fc7 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .bg-gray-200 {
+        background-color: #e5e7eb !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .text-white {
+        color: white !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
 }
 
 /* Animation Effects */
@@ -176,7 +236,58 @@ body {
 }
 
 .timeline-item {
-    animation: fadeIn 0.5s ease-in-out;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Skills Matrix Styles */
+.skills-panel {
+    transition: opacity 0.3s ease;
+}
+
+.skills-panel .bg-blue-600 {
+    transition: width 1s ease-in-out;
+    width: 0; /* Start at 0 width */
+}
+
+/* Add a slight delay between bars for a staggered effect */
+.skills-panel .bg-blue-600:nth-child(1) { transition-delay: 0ms; }
+.skills-panel .bg-blue-600:nth-child(2) { transition-delay: 100ms; }
+.skills-panel .bg-blue-600:nth-child(3) { transition-delay: 200ms; }
+.skills-panel .bg-blue-600:nth-child(4) { transition-delay: 300ms; }
+.skills-panel .bg-blue-600:nth-child(5) { transition-delay: 400ms; }
+
+/* Tab styling */
+button[data-category] {
+    position: relative;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+button[data-category]:hover {
+    color: #1a4fc7;
+}
+
+button[data-category]:focus {
+    outline: none;
+}
+
+button[data-category].active {
+    color: #1a4fc7;
+    border-bottom: 2px solid #1a4fc7;
+}
+
+/* Interactive Timeline */
+.timeline-item h4,
+.timeline-item ul {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.timeline-item ul {
+    overflow: hidden;
+}
+
+.timeline-item button svg {
+    transition: transform 0.2s ease;
 }
 
 /* Accessibility Improvements */
