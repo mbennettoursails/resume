@@ -55,6 +55,88 @@ function initSkillsMatrix() {
     tabsContainer.className = 'flex flex-wrap border-b border-gray-200 mb-6';
     skillsContainer.appendChild(tabsContainer);
 
+    function initSkillsLegend() {
+        // Get the skills container
+        const skillsContainer = document.getElementById('skills-matrix');
+        if (!skillsContainer) return;
+        
+        // Get or create the legend container
+        let legendContainer = document.getElementById('skills-legend');
+        if (!legendContainer) {
+            // If the legend HTML is already added to the page, this won't be needed
+            // This is a fallback in case the HTML wasn't added
+            const legendHTML = `
+            <div id="skills-legend" class="skills-legend bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r mb-6">
+                <div class="flex items-start">
+                    <div class="mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-blue-800 mb-1">How to Interpret Skill Levels</h3>
+                        <p class="text-sm text-gray-700 mb-2">
+                            The percentages represent relative proficiency and experience across different skill areas:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                            <div class="flex items-center">
+                                <div class="w-16 bg-gray-200 h-2.5 rounded-full mr-2">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <span class="text-gray-700">90-100%: Expert Level</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-16 bg-gray-200 h-2.5 rounded-full mr-2">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                                <span class="text-gray-700">80-89%: Advanced</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-16 bg-gray-200 h-2.5 rounded-full mr-2">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 70%"></div>
+                                </div>
+                                <span class="text-gray-700">70-79%: Proficient</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-16 bg-gray-200 h-2.5 rounded-full mr-2">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                </div>
+                                <span class="text-gray-700">60-69%: Competent</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-2">
+                        <button id="skills-legend-toggle" class="text-blue-600 hover:text-blue-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+            
+            // Create temporary element to parse HTML
+            const temp = document.createElement('div');
+            temp.innerHTML = legendHTML;
+            legendContainer = temp.firstElementChild;
+            
+            // Insert legend at the top of skills container, before tabs
+            skillsContainer.insertBefore(legendContainer, skillsContainer.firstChild);
+        }
+        
+        // Add toggle functionality if a toggle button exists
+        const toggleBtn = document.getElementById('skills-legend-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                // Find the content part of the legend (the div after the button)
+                const legendContent = toggleBtn.closest('.skills-legend');
+                if (legendContent) {
+                    legendContent.remove();
+                }
+            });
+        }
+    }
+
     // Create content container
     const contentContainer = document.createElement('div');
     contentContainer.className = 'skills-content';
@@ -170,17 +252,20 @@ function initSkillsMatrix() {
 }
 
 // Initialize timeline interaction
+// Initialize timeline interaction
 function initTimelineInteraction() {
     document.querySelectorAll('.timeline-item').forEach(item => {
         // Get the description and achievements elements
         const description = item.querySelector('p');
+        const achievementsHeading = item.querySelector('h4');
         const achievements = item.querySelector('ul');
         
-        if (!description || !achievements) return;
+        // If elements don't exist or a toggle button already exists, exit
+        if (!description || !achievements || item.querySelector('.timeline-toggle-btn')) return;
         
         // Create toggle button
         const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'text-blue-600 text-sm mt-2 mb-3 flex items-center focus:outline-none';
+        toggleBtn.className = 'timeline-toggle-btn text-blue-600 text-sm mt-1 mb-3 flex items-center focus:outline-none';
         toggleBtn.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -188,8 +273,13 @@ function initTimelineInteraction() {
             <span>View Details</span>
         `;
         
-        // Insert toggle button after description
-        description.parentNode.insertBefore(toggleBtn, description.nextSibling);
+        // Insert toggle button after the achievements heading if it exists,
+        // otherwise after the description
+        if (achievementsHeading) {
+            achievementsHeading.parentNode.insertBefore(toggleBtn, achievementsHeading.nextSibling);
+        } else {
+            description.parentNode.insertBefore(toggleBtn, description.nextSibling);
+        }
         
         // Hide achievements initially
         achievements.classList.add('hidden');
