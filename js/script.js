@@ -1,226 +1,283 @@
+/**
+ * Enhanced Layout Interactions
+ * JavaScript for the three-column layout with improved animations and interactions
+ */
+
 // Initialize when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Generate QR Code
-    generateQRCode();
+    // Initialize all components
+    initScrollAnimations();
+    initStickyHeader();
+    initActiveNavHighlighting();
+    initContentCardAnimations();
+    initSearchFunctionality();
     
-    // Set up event listeners
-    setupEventListeners();
+    // Call original script functions
+    if (typeof generateQRCode === 'function') {
+        generateQRCode();
+    }
     
-    // Check for URL parameters (for sharing functionality)
-    checkUrlParams();
+    if (typeof setupEventListeners === 'function') {
+        setupEventListeners();
+    }
+    
+    if (typeof checkUrlParams === 'function') {
+        checkUrlParams();
+    }
+    
+    if (typeof initSkillsMatrix === 'function') {
+        initSkillsMatrix();
+    }
+    
+    if (typeof initTimelineInteraction === 'function') {
+        initTimelineInteraction();
+    }
 });
 
 /**
- * Generate QR Code with vCard information
+ * Initialize scroll animations for content sections
  */
-function generateQRCode() {
-    // Create vCard format
-    const vCardData = createVCard();
+function initScrollAnimations() {
+    // Add animation class to all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.classList.add('animate-on-scroll');
+    });
     
-    // Generate QR code in the specified element
-    new QRCode(document.getElementById("qrcode"), {
-        text: vCardData,
-        width: 128,
-        height: 128,
-        colorDark: "#1e40af",  // Blue matching the site theme
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+    // Create intersection observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, {
+        root: null, // viewport
+        threshold: 0.15, // 15% of the item is visible
+        rootMargin: '0px 0px -50px 0px' // Slightly before it's in the viewport
+    });
+    
+    // Observe all sections
+    sections.forEach(section => {
+        observer.observe(section);
     });
 }
 
 /**
- * Create vCard format string with personal information
+ * Initialize sticky header with scroll-triggered styling
  */
-function createVCard() {
-    return `BEGIN:VCARD
-VERSION:3.0
-N:Bennett;Matt;;;
-FN:Matt Bennett
-TITLE:Strategic Product Leader
-EMAIL:mjbennett14@gmail.com
-URL:https://www.linkedin.com/in/matt-bennett83
-NOTE:10+ years of product leadership experience
-END:VCARD`;
+function initStickyHeader() {
+    const header = document.querySelector('.main-content > div:first-child');
+    
+    if (!header) return;
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.classList.add('bg-white', 'shadow-md', 'py-3', 'fixed', 'top-0', 'left-0', 'right-0', 'z-10');
+            header.classList.remove('mb-8');
+            
+            // Add padding to the main content to prevent jump
+            if (!document.querySelector('.header-spacer')) {
+                const spacer = document.createElement('div');
+                spacer.classList.add('header-spacer');
+                spacer.style.height = `${header.offsetHeight}px`;
+                header.parentNode.insertBefore(spacer, header.nextSibling);
+            }
+        } else {
+            header.classList.remove('bg-white', 'shadow-md', 'py-3', 'fixed', 'top-0', 'left-0', 'right-0', 'z-10');
+            header.classList.add('mb-8');
+            
+            // Remove the spacer
+            const spacer = document.querySelector('.header-spacer');
+            if (spacer) {
+                spacer.remove();
+            }
+        }
+    });
 }
 
 /**
- * Set up all event listeners for the page
+ * Highlight active navigation link based on scroll position
  */
-function setupEventListeners() {
-    // Smooth scrolling for navigation
+function initActiveNavHighlighting() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar nav a');
+    
+    if (sections.length === 0 || navLinks.length === 0) return;
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('text-blue-300', 'bg-gray-800');
+            
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) {
+                link.classList.add('text-blue-300', 'bg-gray-800');
+            }
+        });
+    });
+}
+
+/**
+ * Add hover animations to content cards
+ */
+function initContentCardAnimations() {
+    const cards = document.querySelectorAll('.content-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            // Add a subtle glow effect
+            card.style.boxShadow = '0 10px 25px -5px rgba(59, 130, 246, 0.4)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            // Remove the effect
+            card.style.boxShadow = '';
+        });
+    });
+}
+
+/**
+ * Initialize search functionality
+ */
+function initSearchFunctionality() {
+    const searchInput = document.querySelector('input[type="text"][placeholder="Search..."]');
+    
+    if (!searchInput) return;
+    
+    searchInput.addEventListener('input', debounce(function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        if (searchTerm.length < 2) {
+            // Reset visibility of all sections if search term is too short
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = '';
+                section.style.opacity = '';
+            });
+            return;
+        }
+        
+        // Search through all headings and paragraphs
+        document.querySelectorAll('section').forEach(section => {
+            const headings = section.querySelectorAll('h2, h3, h4');
+            const paragraphs = section.querySelectorAll('p');
+            const listItems = section.querySelectorAll('li');
+            
+            let found = false;
+            
+            // Check headings
+            headings.forEach(heading => {
+                if (heading.textContent.toLowerCase().includes(searchTerm)) {
+                    found = true;
+                }
+            });
+            
+            // Check paragraphs
+            paragraphs.forEach(paragraph => {
+                if (paragraph.textContent.toLowerCase().includes(searchTerm)) {
+                    found = true;
+                }
+            });
+            
+            // Check list items
+            listItems.forEach(item => {
+                if (item.textContent.toLowerCase().includes(searchTerm)) {
+                    found = true;
+                }
+            });
+            
+            // Show/hide section based on search results
+            if (found) {
+                section.style.display = '';
+                section.style.opacity = '1';
+            } else {
+                section.style.display = 'none';
+                section.style.opacity = '0';
+            }
+        });
+    }, 300));
+}
+
+/**
+ * Utility function to debounce frequent events
+ * @param {Function} func - Function to debounce
+ * @param {number} wait - Wait time in milliseconds
+ * @returns {Function} - Debounced function
+ */
+function debounce(func, wait) {
+    let timeout;
+    
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * Add smooth scrolling to all internal links
+ */
+function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
+            
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                targetElement.scrollIntoView({
+                // Get height of sticky header if it exists
+                const header = document.querySelector('.main-content > div:first-child');
+                const headerHeight = header ? header.offsetHeight : 0;
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - headerHeight - 20,
                     behavior: 'smooth'
                 });
-            }
-        });
-    });
-    
-    // Share button functionality
-    const shareButton = document.getElementById('shareButton');
-    if (shareButton) {
-        shareButton.addEventListener('click', shareVCard);
-    }
-    
-    // Add modal close functionality
-    document.querySelectorAll('.close-modal').forEach(closeBtn => {
-        closeBtn.addEventListener('click', function() {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = 'none';
-            });
-        });
-    });
-    
-    // Close modal when clicking outside
-    window.addEventListener('click', function(event) {
-        document.querySelectorAll('.modal').forEach(modal => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+                
+                // Update URL hash without scrolling
+                history.pushState(null, null, targetId);
             }
         });
     });
 }
 
 /**
- * Share vCard functionality
+ * Add mobile menu toggle functionality
  */
-function shareVCard() {
-    // Create vCard format
-    const vCard = createVCard();
+function initMobileMenu() {
+    const mobileMenuButton = document.querySelector('#mobile-menu-button');
+    const sidebar = document.querySelector('.sidebar');
     
-    // Check if the Web Share API is available
-    if (navigator.share) {
-        // Create a Blob with the vCard data
-        const vCardBlob = new Blob([vCard], { type: 'text/vcard' });
-        
-        // Create a File from the Blob
-        const vCardFile = new File([vCardBlob], 'matt-bennett.vcf', { type: 'text/vcard' });
-        
-        // Use the Web Share API
-        navigator.share({
-            title: 'Matt Bennett - Product Leader',
-            text: 'Contact information for Matt Bennett',
-            files: [vCardFile]
-        })
-        .catch(error => {
-            console.error('Error sharing:', error);
-            // Fallback to download if sharing fails
-            downloadVCard(vCard);
-        });
-    } else {
-        // Fallback for browsers that don't support the Web Share API
-        downloadVCard(vCard);
-    }
-}
-
-/**
- * Download vCard as a file
- */
-function downloadVCard(vCardData) {
-    // Create an invisible link element
-    const element = document.createElement('a');
+    if (!mobileMenuButton || !sidebar) return;
     
-    // Create a blob with the vCard data
-    const vCardBlob = new Blob([vCardData], { type: 'text/vcard' });
-    
-    // Create a URL for the blob
-    const url = URL.createObjectURL(vCardBlob);
-    
-    // Set the attributes for the download link
-    element.setAttribute('href', url);
-    element.setAttribute('download', 'matt-bennett.vcf');
-    
-    // Hide the element
-    element.style.display = 'none';
-    
-    // Add to document, click, and remove
-    document.body.appendChild(element);
-    element.click();
-    
-    // Clean up
-    setTimeout(() => {
-        document.body.removeChild(element);
-        URL.revokeObjectURL(url);
-    }, 100);
-}
-
-/**
- * Check for URL parameters
- * This can be used for tracking or showing specific sections
- */
-function checkUrlParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    // Example: If 'section' parameter exists, scroll to that section
-    const section = urlParams.get('section');
-    if (section) {
-        const targetElement = document.getElementById(section);
-        if (targetElement) {
-            setTimeout(() => {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }, 500);
-        }
-    }
-}
-
-/**
- * Dynamic content loading (for potential future use)
- */
-function loadDynamicContent(url, targetElementId) {
-    fetch(url)
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById(targetElementId).innerHTML = html;
-        })
-        .catch(error => {
-            console.error('Error loading dynamic content:', error);
-        });
-}
-
-/**
- * Add a modal to the page dynamically
- */
-function createModal(id, title, content) {
-    // Create the modal structure
-    const modalHTML = `
-        <div id="${id}" class="modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h2>${title}</h2>
-                <div class="modal-body">
-                    ${content}
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Add to the document
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    
-    // Set up close button functionality
-    document.querySelector(`#${id} .close-modal`).addEventListener('click', function() {
-        document.getElementById(id).style.display = 'none';
+    mobileMenuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('translate-x-0');
+        sidebar.classList.toggle('-translate-x-full');
     });
     
-    return document.getElementById(id);
-}
-
-// Performance monitoring (optional)
-if ('performance' in window && 'PerformanceObserver' in window) {
-    // Create performance observer
-    const perfObserver = new PerformanceObserver((list) => {
-        list.getEntries().forEach((entry) => {
-            // Log performance metrics (useful for debugging)
-            console.log(`[Performance] ${entry.name}: ${entry.startTime.toFixed(0)}ms`);
+    // Close menu when clicking a link on mobile
+    document.querySelectorAll('.sidebar nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 1024) {
+                sidebar.classList.remove('translate-x-0');
+                sidebar.classList.add('-translate-x-full');
+            }
         });
     });
-    
-    // Start observing paint timing events
-    perfObserver.observe({ entryTypes: ['paint'] });
 }

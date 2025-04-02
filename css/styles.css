@@ -1,4 +1,4 @@
-/* Base Styles */
+/* Three-column layout styles */
 :root {
     --primary-color: #1e40af;
     --primary-light: #3b82f6;
@@ -7,310 +7,315 @@
     --text-color: #1f2937;
     --text-light: #6b7280;
     --background-light: #f9fafb;
+    --background-dark: #111827;
     --background-white: #ffffff;
+    --sidebar-width: 20%;
 }
 
+/* General Layout */
 body {
     scroll-behavior: smooth;
+    background-color: var(--background-light);
 }
 
-/* Timeline Styles */
-.timeline-container {
+.sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.main-content {
+    min-height: 100vh;
+}
+
+@media (max-width: 1023px) {
+    .sidebar {
+        height: auto;
+        position: relative;
+    }
+}
+
+.content-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar styling */
+.sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    background-color: var(--background-dark);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #2d3748;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 3px;
+}
+
+.avatar-container img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+/* Navigation styling */
+.sidebar nav ul li a {
+    transition: all 0.2s ease;
     position: relative;
 }
 
-.timeline-container::after {
+.sidebar nav ul li a:hover {
+    background-color: rgba(30, 64, 175, 0.2);
+}
+
+.sidebar nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-light);
+    transition: width 0.3s ease;
+}
+
+.sidebar nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* QR Code styling */
+.qr-code-container {
+    transition: transform 0.3s ease;
+}
+
+.qr-code-container:hover {
+    transform: scale(1.05);
+}
+
+#qrcode {
+    border: 3px solid var(--primary-color);
+}
+
+/* Main content area */
+.main-content {
+    background-color: var(--background-light);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Content cards */
+.content-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Timeline styling */
+.timeline-container {
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline-container::before {
     content: '';
     position: absolute;
     width: 2px;
-    background-color: var(--primary-color);
+    background-color: var(--primary-light);
     top: 0;
     bottom: 0;
-    left: 21px;
-    margin-left: -1px;
+    left: 0;
 }
 
 .timeline-item {
     position: relative;
-    padding-left: 60px;
     margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #e5e7eb;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
 }
 
 .timeline-item::before {
     content: '';
     position: absolute;
-    width: 16px;
-    height: 16px;
-    left: 12px;
-    background-color: var(--primary-color);
-    border: 4px solid var(--primary-color);
-    top: 5px;
+    width: 12px;
+    height: 12px;
+    left: -26px;
+    background-color: white;
+    border: 3px solid var(--primary-color);
+    top: 6px;
     border-radius: 50%;
     z-index: 1;
 }
 
-/* Avatar Styles */
-.avatar-container {
+.timeline-item h3 {
     position: relative;
-    display: inline-block;
 }
 
-#avatar {
-    transition: transform 0.3s ease;
-}
-
-#avatar:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-}
-
-/* QR Code Styles */
-.qr-code-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#qrcode {
-    transition: transform 0.3s ease;
-}
-
-#qrcode:hover {
-    transform: scale(1.05);
-}
-
-/* vCard Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
+.timeline-item h3::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: #e5e7eb;
+    bottom: -4px;
     left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: 50px;
 }
 
-.modal-content {
-    background-color: var(--background-white);
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Skill tags */
+.skill-tag {
+    transition: all 0.2s ease;
 }
 
-.close-modal {
-    color: var(--text-light);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+.skill-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.close-modal:hover {
-    color: var(--text-color);
+/* Form elements */
+input, textarea {
+    transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 640px) {
-    .timeline-container::after {
-        left: 15px;
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+button {
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Right sidebar */
+.right-sidebar-section {
+    transition: all 0.3s ease;
+}
+
+.right-sidebar-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for sections when scrolling */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
-    .timeline-item {
-        padding-left: 40px;
-    }
-    
-    .timeline-item::before {
-        left: 6px;
-    }
-    
-    .qr-code-container {
-        margin-top: 2rem;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Print and PDF Generation Styles */
-@media print {
-    body {
-        background-color: white !important;
+.animate-on-scroll {
+    opacity: 0;
+}
+
+.animate-on-scroll.visible {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+    .sidebar {
+        height: auto;
+        position: relative;
     }
     
-    header, footer, .cta-section {
-        background-color: white !important;
-        color: black !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-    }
-    
-    .timeline-container::after,
-    .timeline-item::before {
-        display: none;
+    .timeline-container::before {
+        left: 0;
     }
     
     .timeline-item {
         padding-left: 0;
+    }
+    
+    .timeline-item::before {
+        left: -20px;
+    }
+}
+
+/* Dark mode support (for future implementation) */
+@media (prefers-color-scheme: dark) {
+    .dark-mode-ready {
+        /* Dark mode styles to be implemented */
+    }
+}
+
+/* Print styles for PDF generation */
+@media print {
+    .sidebar, .right-sidebar {
+        display: none;
+    }
+    
+    .main-content {
+        width: 100%;
+    }
+    
+    .content-card {
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
         break-inside: avoid;
     }
     
-    section {
-        page-break-inside: avoid;
-        margin-bottom: 1.5cm;
-        background-color: white !important;
-    }
-    
-    .shadow-md, .shadow-lg {
-        box-shadow: none !important;
-    }
-    
-    a {
-        text-decoration: none;
-        color: black;
-    }
-    
-    #qrcode {
-        display: block;
-        margin: 0 auto;
-    }
-    
-    /* Hide elements not needed in PDF */
-    #generate-pdf, 
-    #shareButton,
-    .timeline-item button {
-        display: none !important;
-    }
-    
-    /* Show all content for PDF */
-    .timeline-item ul.hidden,
-    .skills-panel.hidden {
-        display: block !important;
-        opacity: 1 !important;
-        max-height: none !important;
-    }
-    
-    /* Better spacing for print */
-    .timeline-item {
-        margin-bottom: 1.5cm;
-    }
-    
-    .container {
-        max-width: 100% !important;
-    }
-    
-    /* Ensure good page breaks */
-    h2, h3 {
-        page-break-after: avoid;
-    }
-    
-    img, svg {
-        page-break-inside: avoid;
-    }
-    
-    /* Force background colors to print */
-    .bg-blue-600, .bg-blue-900 {
-        background-color: #1a4fc7 !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-    }
-    
-    .bg-gray-200 {
-        background-color: #e5e7eb !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-    }
-    
-    .text-white {
-        color: white !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
+    .timeline-container::before,
+    .timeline-item::before {
+        display: none;
     }
 }
 
-/* Animation Effects */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Custom animations */
+.pulse {
+    animation: pulse 2s infinite;
 }
 
-.timeline-item {
-    transition: opacity 0.5s ease, transform 0.5s ease;
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
 }
 
-/* Skills Matrix Styles */
-.skills-panel {
-    transition: opacity 0.3s ease;
-}
-
-.skills-panel .bg-blue-600 {
-    transition: width 1s ease-in-out;
-    width: 0; /* Start at 0 width */
-}
-
-/* Add a slight delay between bars for a staggered effect */
-.skills-panel .bg-blue-600:nth-child(1) { transition-delay: 0ms; }
-.skills-panel .bg-blue-600:nth-child(2) { transition-delay: 100ms; }
-.skills-panel .bg-blue-600:nth-child(3) { transition-delay: 200ms; }
-.skills-panel .bg-blue-600:nth-child(4) { transition-delay: 300ms; }
-.skills-panel .bg-blue-600:nth-child(5) { transition-delay: 400ms; }
-
-/* Tab styling */
-button[data-category] {
-    position: relative;
-    transition: all 0.3s ease;
-    outline: none;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
-}
-
-button[data-category]:hover {
-    color: #1a4fc7;
-}
-
-button[data-category]:focus {
-    outline: none;
-}
-
-button[data-category].active {
-    color: #1a4fc7;
-    border-bottom: 2px solid #1a4fc7;
-}
-
-/* Interactive Timeline */
-.timeline-item h4,
-.timeline-item ul {
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-.timeline-item ul {
-    overflow: hidden;
-}
-
-.timeline-item button svg {
-    transition: transform 0.2s ease;
-}
-
-/* Accessibility Improvements */
-:focus {
-    outline: 2px solid var(--primary-light);
-    outline-offset: 2px;
-}
-
-/* Skip navigation for keyboard users */
-.skip-nav {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--primary-color);
-    color: white;
-    padding: 8px;
-    z-index: 100;
-    transition: top 0.3s;
-}
-
-.skip-nav:focus {
-    top: 0;
+/* Add scroll animation script */
+.scroll-animation-script {
+    display: none;
 }
