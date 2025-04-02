@@ -30,6 +30,16 @@ function initSkillsMatrix() {
                 { name: "Client Relations", level: 85 },
                 { name: "Strategic Planning", level: 85 }
             ]
+        },
+        {
+            name: "Tools & Software",
+            skills: [
+                { name: "Agile Tools (Jira, HPQC, Aha!)", level: 95 },
+                { name: "Design Tools (Figma, Canvas, Adobe)", level: 80 },
+                { name: "AI Tools (ChatGPT, Midjourney, Copilot)", level: 90 },
+                { name: "Office Suites (Microsoft, Google)", level: 95 },
+                { name: "Project Management Tools", level: 90 }
+            ]
         }
     ];
 
@@ -42,7 +52,7 @@ function initSkillsMatrix() {
 
     // Create tabs
     const tabsContainer = document.createElement('div');
-    tabsContainer.className = 'flex border-b border-gray-200 mb-6';
+    tabsContainer.className = 'flex flex-wrap border-b border-gray-200 mb-6';
     skillsContainer.appendChild(tabsContainer);
 
     // Create content container
