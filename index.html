@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matt Bennett - Product Leader</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    
+    <!-- Header Banner -->
+    <header class="bg-blue-900 text-white">
+        <div class="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center">
+                <div class="avatar-container mr-6 hidden md:block">
+                    <img id="avatar" src="./images/avatar.jpg" alt="Matt Bennett" class="rounded-full h-32 w-32 object-cover border-4 border-white shadow-lg" onerror="this.src='https://via.placeholder.com/96?text=MB'; this.onerror=null;">
+                </div>
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl font-bold mb-2">Matt Bennett</h1>
+                    <h2 class="text-2xl font-light mb-6">Strategic Product Leader</h2>
+                    <div class="space-y-1">
+                        <p><span class="font-semibold">Email:</span> mjbennett14@gmail.com</p>
+                        <p><span class="font-semibold">LinkedIn:</span> linkedin.com/in/matt-bennett83</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 md:mt-0 qr-code-container">
+                <div id="qrcode" class="inline-block p-2 bg-white rounded-lg"></div>
+                <p class="text-sm mt-2 text-center">Scan for digital card</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="py-10 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Executive Summary</h2>
+            <p class="text-lg leading-relaxed">
+                As a strategic product leader with 10+ years of dedicated product ownership and management experience, 
+                I excel at bridging technical and business objectives while leading agile development teams to deliver innovative solutions. 
+                My experience spans from scaling a SaaS startup to managing enterprise-level products, demonstrating expertise in 
+                translating complex business requirements into clear technical specifications and actionable user stories.
+            </p>
+            <p class="text-lg leading-relaxed mt-4">
+                My technical background in Computer Information Systems, combined with my MBA, enables me to effectively
+                communicate across all organizational levels—from development teams to C-suite stakeholders. I've demonstrated 
+                success in implementing emerging technologies like AI/ML and RPA, reducing operational costs by 50% through 
+                strategic automation, and scaling products from concept to market success.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills & Certifications -->
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Skills -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-blue-900 mb-6">Skills</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Product Design and Engineering</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Project Planning and Management</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Creating models, blueprints, and design plans</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Functional integration, testing, and quality assurance</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>User Interface & Experience (UI) Front End Development</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Mendix Studio & Pro development</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Product Management and Ownership</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Requirements gathering, analysis, and definition</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Service Delivery and Implementation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Strong vendor and stakeholder relations management</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Business analysis, reporting, and data analysis</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certifications -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-blue-900 mb-6">Certifications</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span>MBA</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span>Disciplined Agile® Senior Scrum Master (DASSM) Certification</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span>PMI Citizen Developer Practitioner</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span>Mendix Rapid Developer Certified</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="py-10 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8">Professional Experience</h2>
+            
+            <div class="timeline-container">
+                <!-- Experience 1 -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold">Head of Product & Co-founder</h3>
+                        <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                            <span class="font-medium">OurSails, Yokohama Japan</span>
+                            <span class="hidden sm:block mx-2">•</span>
+                            <span>2023 – 2024</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        As founding member of a 5-person SaaS startup, wore multiple hats across product, development, and operations 
+                        while driving rapid growth through lean methodologies. Balanced strategic leadership with hands-on execution in all 
+                        aspects of the business.
+                    </p>
+                    <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Grew user base to 1,000+ paid subscribers within first year through highly targeted product-market fit</li>
+                        <li>Led successful Product Hunt launch reaching #5 ranking</li>
+                        <li>Established lightweight but effective agile processes for consistent weekly improvements</li>
+                        <li>Built and deployed custom GPT agents to augment team capabilities across customer support, QA, and documentation</li>
+                        <li>Conducted 100+ user interviews to reveal critical collaboration and communication pain points</li>
+                    </ul>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold">Product Operation Manager</h3>
+                        <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                            <span class="font-medium">Avertra Corp, Yokohama Japan</span>
+                            <span class="hidden sm:block mx-2">•</span>
+                            <span>2021 – 2023</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Played a pivotal role in ensuring cross-functional product teams operated effectively and efficiently.
+                        Managed the product portfolio of initiatives for a global team, established standards for product road mapping,
+                        and led multiple proof of concept engagements.
+                    </p>
+                    <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Managed product portfolio initiatives for global team, ensuring alignment across cross-functional teams</li>
+                        <li>Established standards and tools for product road mapping and reporting</li>
+                        <li>Led multiple proof of concept engagements utilizing Mendix Studio and Studio Pro</li>
+                        <li>Developed communication plans to ensure appropriate stakeholder involvement</li>
+                    </ul>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold">Product Owner</h3>
+                        <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                            <span class="font-medium">Avertra Corp, Virginia</span>
+                            <span class="hidden sm:block mx-2">•</span>
+                            <span>2016 – 2021</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Responsible for managing product development and service operations for the MiCustomer platform.
+                        Coordinated sprint meetings and requirements gatherings while managing the product backlog to ensure
+                        it was organized and prioritized based on customer needs.
+                    </p>
+                    <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Spearheaded the end-to-end development of six products</li>
+                        <li>Supported marketing, communications, and end-user training efforts</li>
+                        <li>Led integration of multiple new technologies (RPA, chatbot, Machine learning)</li>
+                        <li>Automated processes for user account registration and recovery, reducing call volume to customer service by 50%</li>
+                    </ul>
+                </div>
+                
+                <!-- Additional Experience -->
+                <div class="timeline-item">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold">Additional Experience</h3>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>SAP ISU Device Management and Smart Meter Consultant (2012 – 2016) | HCL</li>
+                        <li>Functional SAP and Self-Service Portal Consultant (2011 – 2012) | HCL</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Education</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Master of Business Administration</h3>
+                    <p class="text-gray-600">University of North Alabama, Florence, AL</p>
+                    <p class="text-gray-500 mt-1">2009</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Bachelor of Science in Computer Information Systems</h3>
+                    <p class="text-gray-600">University of North Alabama, Florence, AL</p>
+                    <p class="text-gray-500 mt-1">2007</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 bg-blue-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to connect?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Looking for a strategic product leader who can bridge technical and business objectives? Let's talk about how I can bring value to your organization.</p>
+            <a href="mailto:mjbennett14@gmail.com" class="inline-block bg-white text-blue-900 px-8 py-3 rounded-lg font-bold shadow-lg hover:bg-blue-100 transition duration-300">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-800 text-gray-300">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Matt Bennett. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="https://www.linkedin.com/in/matt-bennett83" class="text-blue-300 hover:text-white mx-2" target="_blank">LinkedIn</a>
+                <button id="shareButton" class="text-blue-300 hover:text-white mx-2">Share as vCard</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- QR Code library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="./js/script.js"></script>
+</body>
+</html>
