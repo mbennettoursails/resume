@@ -200,7 +200,7 @@ body {
 
 /* Content cards */
 .content-card {
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
     border-left: 4px solid transparent;
 }
 
@@ -231,7 +231,7 @@ body {
     margin-bottom: 2.5rem; /* Increased from 2rem */
     padding-bottom: 1.5rem; /* Increased from 1rem */
     border-bottom: 1px dashed #e5e7eb;
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Added for hover effect */
+    transition: transform 0.1s ease, background-color 0.1s ease; /* Added for hover effect */
 }
 
 .timeline-item:hover {
