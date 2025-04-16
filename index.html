@@ -32,63 +32,93 @@
     <div class="flex flex-col lg:flex-row">
         <!-- Left Sidebar -->
         <div class="w-full lg:w-1/5 bg-gray-900 text-white sidebar">
-            <div class="p-6 flex flex-col items-center">
-                <div class="avatar-container mb-4">
-                    <img id="avatar" src="./images/avatar.jpg" alt="Matt Bennett" class="rounded-full h-32 w-32 object-cover border-4 border-blue-600 shadow-lg" onerror="this.src='https://via.placeholder.com/128?text=MB'; this.onerror=null;">
-                </div>
-                <h1 class="text-3xl font-bold mb-2 text-center">Matt Bennett</h1>
-                <h2 class="text-xl font-light mb-6 text-center">Strategic Product Leader</h2>
-                <div class="space-y-2 text-center mb-8">
-                    <!-- Social Links -->
-                <div class="mt-1     flex space-x-4 justify-center ">
-                    <!-- <a href="https://github.com/" class="text-gray-400 hover:text-white" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>-->
-                    <a href="https://www.linkedin.com/in/matt-bennett83" class="text-gray-400 hover:text-white" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:mjbennett14@gmail.com" class="text-gray-400 hover:text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </a>
-                </div>
+            <div class="p-4 flex flex-col">
+                <!-- Avatar, Name and Compact Resume Switcher -->
+                <div class="flex flex-col items-center mb-4">
+                    <div class="avatar-container mb-3">
+                        <img id="avatar" src="./images/avatar.jpg" alt="Matt Bennett" class="rounded-full h-28 w-28 object-cover border-3 border-blue-600 shadow-lg" onerror="this.src='https://via.placeholder.com/128?text=MB'; this.onerror=null;">
+                    </div>
+                    <h1 class="text-2xl font-bold mb-1 text-center">Matt Bennett</h1>
+                    <h2 id="resume-title" class="text-lg font-light mb-2 text-center">SAP ISU Consultant</h2>
+                    
+                    <!-- Compact Resume Switcher -->
+                    <div id="resume-switcher" class="w-full mb-3">
+                        <div class="flex">
+                            <button class="resume-toggle-btn flex-1 py-1 px-3 rounded-l-md transition-colors focus:outline-none focus:ring-1 focus:ring-blue-500 bg-gray-700 text-gray-300 text-sm" data-resume-type="product">
+                                Product Leader
+                            </button>
+                            <button class="resume-toggle-btn flex-1 py-1 px-3 rounded-r-md transition-colors focus:outline-none focus:ring-1 focus:ring-blue-500 bg-blue-600 text-white text-sm" data-resume-type="sap">
+                                SAP Consultant
+                            </button>
+                        </div>
+                        <a id="download-resume-btn" href="./assets/Matt Bennett - SAP - 2025.pdf" class="text-xs text-center block text-blue-300 hover:text-white mt-1" download>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Download Resume PDF
+                        </a>
+                    </div>
                 </div>
                 
-                <!-- Navigation Links -->
+                <!-- Compact Contact Links -->
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <a href="mailto:mjbennett14@gmail.com" class="flex items-center justify-center py-1.5 px-2 rounded bg-gray-800 hover:bg-gray-700 transition-colors text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="truncate">Email</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/matt-bennett83" class="flex items-center justify-center py-1.5 px-2 rounded bg-gray-800 hover:bg-gray-700 transition-colors text-sm" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span class="truncate">LinkedIn</span>
+                    </a>
+                    <div class="flex items-center justify-center py-1.5 px-2 rounded bg-gray-800 transition-colors text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span class="truncate">+81-90-369-27122</span>
+                    </div>
+                    <div class="flex items-center justify-center py-1.5 px-2 rounded bg-gray-800 transition-colors text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span class="truncate">Yokohama, Japan</span>
+                    </div>
+                </div>
+                
+                <!-- Compact Navigation Links -->
                 <nav class="w-full">
-                    <ul class="space-y-2">
+                    <ul class="grid grid-cols-1 gap-1">
                         <li>
-                            <a href="#summary" class="flex items-center p-3 rounded hover:bg-gray-800 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <a href="#summary" class="flex items-center py-2 px-3 rounded hover:bg-gray-800 transition-colors text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                                 Summary
                             </a>
                         </li>
                         <li>
-                            <a href="#skills" class="flex items-center p-3 rounded hover:bg-gray-800 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <a href="#skills" class="flex items-center py-2 px-3 rounded hover:bg-gray-800 transition-colors text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                 </svg>
                                 Skills
                             </a>
                         </li>
                         <li>
-                            <a href="#experience" class="flex items-center p-3 rounded hover:bg-gray-800 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <a href="#experience" class="flex items-center py-2 px-3 rounded hover:bg-gray-800 transition-colors text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                                 Experience
                             </a>
                         </li>
                         <li>
-                            <a href="#education" class="flex items-center p-3 rounded hover:bg-gray-800 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <a href="#education" class="flex items-center py-2 px-3 rounded hover:bg-gray-800 transition-colors text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M12 14l9-5-9-5-9 5 9 5z" />
                                     <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
@@ -97,18 +127,49 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#contact" class="flex items-center p-3 rounded hover:bg-gray-800 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            <a href="#certifications" class="flex items-center py-2 px-3 rounded hover:bg-gray-800 transition-colors text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
-                                Contact
+                                Certifications
                             </a>
                         </li>
                     </ul>
                 </nav>
-                
-                
-                
+
+                <!-- Contact Section in Sidebar -->
+<div class="mt-6 mb-4 border-t border-gray-700 pt-4">
+    <h3 class="text-lg font-semibold mb-3 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        Connect With Me
+    </h3>
+    
+    <!-- Schedule Option -->
+    <div class="bg-gray-800 rounded-md p-3 mb-3 hover:bg-gray-750 transition-colors">
+        <h4 class="font-medium text-blue-300 text-sm mb-1.5">Schedule a Call</h4>
+        <p class="text-gray-400 text-xs mb-2">Book a 30-minute call directly in my calendar</p>
+        <a href="https://calendly.com/mjbennett14/30min" class="flex items-center justify-center w-full py-1.5 px-3 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+            </svg>
+            Book Time
+        </a>
+    </div>
+    
+    <!-- Email Option -->
+    <div class="bg-gray-800 rounded-md p-3 hover:bg-gray-750 transition-colors">
+        <h4 class="font-medium text-blue-300 text-sm mb-1.5">Send a Message</h4>
+        <p class="text-gray-400 text-xs mb-2">Have a specific question or inquiry?</p>
+        <a href="mailto:mjbennett14@gmail.com" class="flex items-center justify-center w-full py-1.5 px-3 bg-gray-700 text-white text-sm rounded hover:bg-gray-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Email Me
+        </a>
+    </div>
+</div>
             </div>
         </div>
         
@@ -203,118 +264,317 @@
                 </section>
             
             <!-- Experience Section -->
-            <section id="experience" class="mb-10">
-                <div class="bg-white rounded-lg shadow-md p-6 content-card">
-                    <h2 class="text-2xl font-bold text-blue-900 mb-4">Professional Experience</h2>
-                    <div class="timeline-container">
-                        <!-- Experience 1 -->
-                        <div class="timeline-item">
-                            <div class="mb-4">
-                                <h3 class="text-xl font-bold">Head of Product & Co-founder</h3>
-                                <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
-                                    <span class="font-medium">OurSails, Yokohama Japan</span>
-                                    <span class="hidden sm:block mx-2">•</span>
-                                    <span>2023 – 2024</span>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 mb-4">
-                                As founding member of a 5-person SaaS startup, wore multiple hats across product, development, and operations 
-                                while driving rapid growth through lean methodologies. Balanced strategic leadership with hands-on execution in all 
-                                aspects of the business.
-                            </p>
-                            <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
-                            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li>Grew user base to 1,000+ paid subscribers within first year through highly targeted product-market fit and achieved 32% month-over-month growth</li>
-                                <li>Led successful Product Hunt launch reaching #5 ranking, bringing in 4,200+ site visitors and 380 trial signups in 48 hours</li>
-                                <li>Established lightweight but effective agile processes, increasing team velocity by 40% and reducing deployment time by 65%</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Experience 2 -->
-                        <div class="timeline-item">
-                            <div class="mb-4">
-                                <h3 class="text-xl font-bold">Product Operation Manager</h3>
-                                <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
-                                    <span class="font-medium">Avertra Corp, Yokohama Japan</span>
-                                    <span class="hidden sm:block mx-2">•</span>
-                                    <span>2021 – 2023</span>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 mb-4">
-                                Played a pivotal role in ensuring cross-functional product teams operated effectively and efficiently.
-                                Managed the product portfolio of initiatives for a global team, established standards for product road mapping,
-                                and led multiple proof of concept engagements.
-                            </p>
-                            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li>Managed product portfolio for a global team of 35+ members, improving on-time delivery by 42% and reducing rework by 60%</li>
-                                <li>Established standardized product road mapping process, increasing visibility and alignment across 4 departments and reducing planning time by 35%</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Experience 3 -->
-                        <div class="timeline-item">
-                            <div class="mb-4">
-                                <h3 class="text-xl font-bold">Product Owner</h3>
-                                <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
-                                    <span class="font-medium">Avertra Corp, Virginia</span>
-                                    <span class="hidden sm:block mx-2">•</span>
-                                    <span>2016 – 2021</span>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 mb-4">
-                                Responsible for managing product development and service operations for the MiCustomer platform.
-                                Coordinated sprint meetings and requirements gatherings while managing the product backlog to ensure
-                                it was organized and prioritized based on customer needs.
-                            </p>
-                            <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
-                            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li>Spearheaded the end-to-end development of six products, delivering 94% of planned features on time and with 100% customer acceptance</li>
-                                <li>Reduced product backlog by 72% through effective prioritization while increasing customer satisfaction scores from 3.6 to 4.7 out of 5</li>
-                            </ul>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="mb-4">
-                                <h3 class="text-xl font-bold">Additional Experience</h3>
-                            </div>
-                            <div class="space-y-4">
-                                <!-- HCL Experience 1 -->
-                                <div class="border-l-4 border-blue-200 pl-4">
-                                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600">
-                                        <span class="font-medium">SAP ISU Device Management and Smart Meter Consultant</span>
-                                        <span class="hidden sm:block mx-2">•</span>
-                                        <span>HCL</span>
-                                        <span class="hidden sm:block mx-2">•</span>
-                                        <span>2012 – 2016</span>
-                                    </div>
-                                    <p class="text-gray-700 mt-2">
-                                        Specialized in SAP IS-U implementation for utility companies, focusing on device management 
-                                        and smart meter integration solutions.
-                                    </p>
-                                </div>
-                                
-                                <!-- HCL Experience 2 -->
-                                <div class="border-l-4 border-blue-200 pl-4">
-                                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600">
-                                        <span class="font-medium">Functional SAP and Self-Service Portal Consultant</span>
-                                        <span class="hidden sm:block mx-2">•</span>
-                                        <span>HCL</span>
-                                        <span class="hidden sm:block mx-2">•</span>
-                                        <span>2010 – 2012</span>
-                                    </div>
-                                    <p class="text-gray-700 mt-2">
-                                        Provided consulting services for SAP implementations with a focus on customer-facing 
-                                        self-service portal development and integration.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Updated Experience Section -->
+<section id="experience" class="mb-10">
+    <div class="bg-white rounded-lg shadow-md p-6 content-card">
+        <h2 class="text-2xl font-bold text-blue-900 mb-4">Professional Experience</h2>
+        <div class="timeline-container">
+            <!-- Experience 1 -->
+            <div class="timeline-item" data-resume-type="both">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Head of Product & Co-founder</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">OurSails, Yokohama Japan</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2023 – 2024</span>
                     </div>
-
-                    
                 </div>
-
-                
-            </section>
+                <p class="text-gray-700 mb-4">
+                    As founding member of a 5-person SaaS startup, wore multiple hats across product, development, and operations 
+                    while driving rapid growth through lean methodologies. Balanced strategic leadership with hands-on execution in all 
+                    aspects of the business.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Grew user base to 1,000+ paid subscribers within first year through highly targeted product-market fit and achieved 32% month-over-month growth</li>
+                    <li>Led successful Product Hunt launch reaching #5 ranking, bringing in 4,200+ site visitors and 380 trial signups in 48 hours</li>
+                    <li>Established lightweight but effective agile processes, increasing team velocity by 40% and reducing deployment time by 65%</li>
+                    <li class="sap-specific">Applied SAP implementation expertise to develop rigorous product development methodologies for SaaS startup</li>
+                    <li class="sap-specific">Leveraged utility industry knowledge to build structured data models and workflows</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 2 -->
+            <div class="timeline-item" data-resume-type="both">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Product Operations Manager</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">Avertra Corp, Yokohama Japan</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2021 – 2023</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4 product-specific">
+                    Played a pivotal role in ensuring cross-functional product teams operated effectively and efficiently.
+                    Managed the product portfolio of initiatives for a global team, established standards for product road mapping,
+                    and led multiple proof of concept engagements.
+                </p>
+                <p class="text-gray-700 mb-4 sap-specific">
+                    My role was designed to aid Avertra's cross-functional product teams to operate as effectively as possible. 
+                    Led tasks to solve initial challenges our teams experienced and gave product managers their time back to focus 
+                    on building products users love. My team focused on alignment, communication, processes, and scale.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li class="product-specific">Managed product portfolio for a global team of 35+ members, improving on-time delivery by 42% and reducing rework by 60%</li>
+                    <li class="product-specific">Established standardized product road mapping process, increasing visibility and alignment across 4 departments and reducing planning time by 35%</li>
+                    <li class="sap-specific">Standardized project tracking and delivery across SAP utility implementations, establishing metrics and KPIs aligned with SAP implementation best practices</li>
+                    <li class="sap-specific">Developed tooling and processes to ensure consistency in SAP-integrated product delivery, resulting in 30% reduction in implementation timelines</li>
+                    <li class="sap-specific">Facilitated cross-functional alignment between product, development, and SAP technical teams, improving requirement accuracy by 40%</li>
+                    <li class="sap-specific">Managed risk assessment and mitigation strategies across the SAP implementation portfolio</li>
+                    <li class="sap-specific">Created communication frameworks to ensure appropriate stakeholder visibility into project milestones and deliverables</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 3 - Halifax Water -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Product Owner - Halifax Water</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">Avertra Corp</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2020 – 2021</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Managed product development and service operations for the MiCustomer platform. Coordinated sprint meetings 
+                    and requirements meetings for new features and enhancements. Managed the product backlog and provided delivery 
+                    support to cross-functional technical teams.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Led the MiCustomer platform integration with SAP backend systems, ensuring seamless data flow between customer portal and utility systems</li>
+                    <li>Spearheaded groundbreaking Twilio SMS integration into SAP eBill platform, enabling real-time notifications between smart meters and customer communications</li>
+                    <li>Automated account management processes through SAP integration, reducing customer service call volume by 50% within six months</li>
+                    <li>Managed sprints and product backlogs, prioritizing features based on technical constraints and SAP integration requirements</li>
+                    <li>Collaborated with SAP technical teams to ensure accurate data mapping between portal and backend systems</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 4 - Southwest Gas -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Process Engineer - Southwest Gas (SWG)</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">Avertra Corp</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2019 – 2020</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Provided services as a Process Engineer to assist with automation of BPEM exception cases. This required 
+                    the analysis of requirements, developing processes using precise BPMN 2.0 to be utilized with automation 
+                    application Camunda.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Designed and implemented BPMN 2.0 workflows to automate SAP BPEM exception handling, improving process efficiency by 35%</li>
+                    <li>Developed detailed SAP integration specifications for Camunda automation platform, ensuring proper data exchange</li>
+                    <li>Created client-facing wireframes aligning UI/UX with SAP business process requirements</li>
+                    <li>Served as Jira SME, organizing cross-team deliverables and establishing best practices for tracking SAP implementation tasks</li>
+                    <li>Delivered all requirements and SAP integration design documentation on time and to specification</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 5 - Puget Sound Energy -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Product Owner - Puget Sound Energy (PSE)</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">Avertra Corp</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2017 – 2018</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Oversaw product development for the PSE platform. Gathered, documented, and translated project requirements 
+                    into designs for technology applications and solutions development. Established product roadmap, schedules, 
+                    and estimates with the Delivery Manager.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Gathered, documented, and translated SAP-specific requirements into technical specifications for development teams</li>
+                    <li>Conducted comprehensive gap analysis between current SAP functionality and client requirements</li>
+                    <li>Created detailed user stories and acceptance criteria for SAP integration points</li>
+                    <li>Led 30+ business requirements sessions across 15 agencies, ensuring alignment with SAP capabilities</li>
+                    <li>Successfully facilitated integration negotiations between regulatory bodies, ensuring compliance with SAP data standards</li>
+                    <li>Maintained product backlog with prioritized SAP development and configuration tasks</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 6 - Loudoun Water -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Product Owner - Loudoun Water</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">Avertra Corp</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2016 – 2018</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Managed product development and service operations for the MiCustomer platform. Coordinated regular 
+                    sprint meetings and requirements meetings for new features and enhancements. Managed the product backlog 
+                    and provided delivery support to cross-functional technical teams.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Managed full product development cycle for MiCustomer platform, focusing on SAP IS-U integration points</li>
+                    <li>Coordinated regular sprint meetings and requirements sessions for new features enhancing SAP data utilization</li>
+                    <li>Led the first-ever integration of Twilio SMS with SAP eBill platform, creating real-time meter data notifications</li>
+                    <li>Automated multiple account processes through SAP integration, dramatically reducing manual intervention</li>
+                    <li>Supported marketing, communications, and end-user training for SAP-integrated customer portal</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 7 - Product Owner (Combined for Product Resume) -->
+            <div class="timeline-item product-specific" data-resume-type="product">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Product Owner</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">Avertra Corp, Virginia</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2016 – 2021</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Responsible for managing product development and service operations for the MiCustomer platform.
+                    Coordinated sprint meetings and requirements gatherings while managing the product backlog to ensure
+                    it was organized and prioritized based on customer needs.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Spearheaded the end-to-end development of six products, delivering 94% of planned features on time and with 100% customer acceptance</li>
+                    <li>Reduced product backlog by 72% through effective prioritization while increasing customer satisfaction scores from 3.6 to 4.7 out of 5</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 8 - National Fuel & Gas -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">SAP ISU Device Management Consultant - National Fuel & Gas</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">HCL, Buffalo, NY</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2014 – 2016</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Designed, configured, and managed user interface, reporting, and product enhancements for Device Management 
+                    and Energy Data Management processes. Served as primary point of contact for all critical events.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Configured and optimized SAP IS-U Device Management and Energy Data Management modules according to utility requirements</li>
+                    <li>Developed and maintained 25+ functional specifications for SAP interfaces, reports, and enhancements</li>
+                    <li>Implemented daily import process for hourly meter readings from 400+ commercial and industrial Mercury meters</li>
+                    <li>Performed daily data analysis for legacy system comparisons to ensure data integrity during transition</li>
+                    <li>Built positive working relationships with offshore resources and client stakeholders</li>
+                    <li>Delivered implementation with zero critical defects post-go-live</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 9 - Hydro One -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">SAP ISU Device Management & MDA Consultant - Hydro One</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">HCL, Toronto, ON</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2012 – 2014</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Created and maintained Meter Data Acquisition functional developments and the synchronization of smart meters 
+                    from SAP to Itron IEE. Responsible for interface development and data integrity between systems.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Managed synchronization of 1.4 million smart meters between SAP and Itron IEE systems</li>
+                    <li>Created and maintained interfaces processing 50,000-70,000 daily meter readings from Time-of-Use smart meters in SAP</li>
+                    <li>Implemented synchronization and maintenance processes for MV90 meters and register groups between SAP and IEE</li>
+                    <li>Analyzed Itron IEE logs and SAP web services to resolve synchronization issues during system stabilization</li>
+                    <li>Developed complex XML schemas for meter data exchange between SAP and external systems</li>
+                    <li>Conducted comprehensive knowledge transfer sessions and created detailed work instructions for support staff</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 10 - Fortis BC -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Functional SAP & Self-Service Portal Consultant - Fortis BC</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">HCL, Vancouver, BC</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2011 – 2012</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Led completion of the SDLC for HCL's customer self-service product iEM (intelligent Energy Management). 
+                    Responsible for functional specifications, testing, configuration, and implementation support.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Led end-to-end implementation of HCL's intelligent Energy Management (iEM) customer self-service product</li>
+                    <li>Maintained functional and development specifications for SAP integration components</li>
+                    <li>Performed unit testing on custom SAP Function Modules ensuring data integrity between portal and backend systems</li>
+                    <li>Executed comprehensive front-end to back-end integration tests validating complete customer journeys</li>
+                    <li>Configured custom SAP IMG settings to support portal functionality</li>
+                    <li>Designed solution documentation including process narratives, workflows, interface requirements, and wireframes</li>
+                    <li>Provided go-live support and knowledge transfer for support personnel</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 11 - Early SAP -->
+            <div class="timeline-item sap-specific" data-resume-type="sap">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">SAP ISU Solutions Development Consultant</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
+                        <span class="font-medium">HCL, USA & India</span>
+                        <span class="hidden sm:block mx-2">•</span>
+                        <span>2010 – 2011</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Provided support for SAP IS-U solutions development and pre-sales activities. Focused on technical documentation, 
+                    UI design, and knowledge management for utility implementations.
+                </p>
+                <h4 class="font-semibold text-blue-800 mb-2">Key Achievements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Completed formal training in SAP IS-U Device Management module</li>
+                    <li>Supported pre-sales efforts for utility product lines, creating demos and mockups</li>
+                    <li>Developed high-fidelity mock screens for developers using Adobe Photoshop and Fireworks</li>
+                    <li>Created knowledge base repository using Microsoft SharePoint for Smart Grid technologies</li>
+                    <li>Assisted with SAP utility solution demonstrations for potential clients</li>
+                </ul>
+            </div>
+            
+            <!-- Experience 12 - HCL Generic (for Product Resume) -->
+            <div class="timeline-item product-specific" data-resume-type="product">
+                <div class="mb-4">
+                    <h3 class="text-xl font-bold">Additional Experience</h3>
+                </div>
+                <div class="space-y-4">
+                    <!-- HCL Generic Description -->
+                    <div class="border-l-4 border-blue-200 pl-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center text-gray-600">
+                            <span class="font-medium">SAP Functional Solutions Consultant</span>
+                            <span class="hidden sm:block mx-2">•</span>
+                            <span>HCL</span>
+                            <span class="hidden sm:block mx-2">•</span>
+                            <span>2010 – 2016</span>
+                        </div>
+                        <p class="text-gray-700 mt-2">
+                            Led implementation and optimization of utility solutions focused on SAP IS-U Device Management, 
+                            smart metering systems, and customer self-service platforms. Responsible for functional specifications, 
+                            testing, configuration, and implementation support across multiple client engagements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
             
             <!-- Education Section -->
             <section id="education" class="mb-10">
@@ -335,35 +595,8 @@
                 </div>
             </section>
             
-            <!-- Contact Form 
-            <section id="contact" class="mb-10">
-                <div class="bg-white rounded-lg shadow-md p-6 content-card">
-                    <h2 class="text-2xl font-bold text-blue-900 mb-4">Contact Me</h2>
-                    <form class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Send Message</button>
-                        </div>
-                    </form>
-                </div>
-            </section>-->
+           <!-- Contact Section -->
+            
         </div>
         
         <!-- Right Sidebar -->
@@ -448,10 +681,22 @@
             </div>
             
             <!-- Call to Action -->
-            <div class="bg-blue-600 rounded-lg shadow-md p-4 text-white mb-6">
-                <h2 class="text-xl font-bold mb-3">Ready to connect?</h2>
-                <p class="text-sm mb-4">Looking for a strategic product leader for your team?</p>
-                <a href="mailto:mjbennett14@gmail.com" class="block text-center bg-white text-blue-700 px-4 py-2 rounded font-medium hover:bg-blue-50 transition-colors">Contact Me</a>
+            <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+                <h2 class="text-xl font-bold text-blue-900 mb-3">Download Options</h2>
+                <div class="space-y-3">
+                    <a href="./assets/MATT BENNETT - Product Manager - 2025.pdf" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors" download>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Product Leader Resume (PDF)
+                    </a>
+                    <a href="./assets/Matt Bennett - SAP - 2025.pdf" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors" download>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        SAP Consultant Resume (PDF)
+                    </a>
+                </div>
             </div>
             
         </div>
@@ -463,8 +708,17 @@
             <p>© 2025 Matt Bennett. All rights reserved.</p>
             <div class="mt-4">
                 <a href="https://www.linkedin.com/in/matt-bennett83" class="text-blue-300 hover:text-white mx-2" target="_blank">LinkedIn</a>
+                <a href="https://calendly.com/mjbennett14/30min" class="text-blue-300 hover:text-white mx-2" target="_blank">Schedule a Call</a>
                 <button id="shareButton" class="text-blue-300 hover:text-white mx-2">Share as vCard</button>
             </div>
+        </div>
+        <div class="mt-4 flex justify-center">
+            <button id="generate-pdf" class="text-blue-300 hover:text-white mx-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Generate Current View as PDF
+            </button>
         </div>
     </footer>
 
@@ -474,5 +728,8 @@
     <!-- Custom JavaScript -->
     <script src="./js/script.js"></script>
     <script src="./js/skills-matrix.js"></script>
+    <script src="./js/resume-switcher.js"></script>
+    <script src="./js/active-section-highlight.js"></script>
+    <script src="./js/experience-switcher.js"></script>
 </body>
 </html>

@@ -22,6 +22,17 @@ body {
     height: 100vh;
     position: sticky;
     top: 0;
+    overflow-y: auto;
+    background-color: var(--background-dark);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.sidebar > div {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .main-content {
@@ -45,16 +56,6 @@ body {
 }
 
 /* Sidebar styling */
-.sidebar {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-    overflow-y: auto;
-    background-color: var(--background-dark);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
-
 .sidebar::-webkit-scrollbar {
     width: 6px;
 }
@@ -68,38 +69,114 @@ body {
     border-radius: 3px;
 }
 
+/* Compact avatar */
+.avatar-container {
+    position: relative;
+    padding: 2px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #3b82f6, #1e40af);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
 .avatar-container img {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .avatar-container img:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+/* Compact resume switcher */
+#resume-switcher {
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.resume-toggle-btn {
+    font-size: 0.875rem;
+    height: 2rem;
+    transition: all 0.2s ease;
+}
+
+.resume-toggle-btn:hover {
+    filter: brightness(110%);
+}
+
+#download-resume-btn {
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+    display: block;
+    text-align: center;
+    margin-top: 0.25rem;
+}
+
+#download-resume-btn:hover {
+    text-decoration: underline;
+}
+
+/* Compact contact links */
+.sidebar .grid-cols-2 > a,
+.sidebar .grid-cols-2 > div {
+    transition: all 0.2s ease;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.sidebar .grid-cols-2 > a:hover {
+    transform: translateY(-2px);
+    background-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Compact navigation */
+.sidebar nav ul li a {
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.sidebar nav ul li a.active,
+.sidebar nav ul li a:hover {
+    border-left: 2px solid #3b82f6;
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.sidebar nav ul li a svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
 }
 
 /* Navigation styling */
-.sidebar nav ul li a {
-    transition: all 0.2s ease;
-    position: relative;
-}
-
 .sidebar nav ul li a:hover {
     background-color: rgba(30, 64, 175, 0.2);
 }
 
-.sidebar nav ul li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-light);
-    transition: width 0.3s ease;
+/* Active nav link styling */
+.sidebar nav ul li a.active {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: white;
 }
 
-.sidebar nav ul li a:hover::after {
-    width: 100%;
+.sidebar nav ul li a.active svg {
+    color: #3b82f6;
+}
+
+/* Highlight currently visible section */
+.highlight-current-section {
+    animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+    0% {
+        border-left-color: rgba(59, 130, 246, 0.6);
+    }
+    50% {
+        border-left-color: rgba(59, 130, 246, 1);
+    }
+    100% {
+        border-left-color: rgba(59, 130, 246, 0.6);
+    }
 }
 
 /* QR Code styling */
@@ -136,14 +213,14 @@ body {
 /* Timeline styling */
 .timeline-container {
     position: relative;
-    padding-left: 20px;
+    padding-left: 28px; /* Increased padding from 20px */
 }
 
 .timeline-container::before {
     content: '';
     position: absolute;
-    width: 2px;
-    background-color: var(--primary-light);
+    width: 3px; /* Increased from 2px */
+    background-color: #e5e7eb; /* Changed from var(--primary-light) to a lighter color */
     top: 0;
     bottom: 0;
     left: 0;
@@ -151,9 +228,16 @@ body {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
+    margin-bottom: 2.5rem; /* Increased from 2rem */
+    padding-bottom: 1.5rem; /* Increased from 1rem */
     border-bottom: 1px dashed #e5e7eb;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Added for hover effect */
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+    background-color: rgba(249, 250, 251, 0.8);
+    border-radius: 8px;
 }
 
 .timeline-item:last-child {
@@ -163,28 +247,59 @@ body {
 .timeline-item::before {
     content: '';
     position: absolute;
-    width: 12px;
-    height: 12px;
-    left: -26px;
+    width: 14px; /* Increased from 12px */
+    height: 14px; /* Increased from 12px */
+    left: -34px; /* Adjusted from -26px */
     background-color: white;
     border: 3px solid var(--primary-color);
-    top: 6px;
+    top: 8px; /* Adjusted from 6px */
     border-radius: 50%;
     z-index: 1;
+    box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.1); /* Added subtle glow */
 }
 
 .timeline-item h3 {
     position: relative;
+    padding-bottom: 8px; /* Added padding for the underline */
+    display: inline-block; /* Make element only as wide as the text */
+    margin-bottom: 8px; /* Add space after the line */
 }
 
 .timeline-item h3::after {
     content: '';
     position: absolute;
-    height: 1px;
-    background-color: #e5e7eb;
-    bottom: -4px;
+    height: 2px; /* Increased from 1px */
+    background-color: #3b82f6; /* Changed from #e5e7eb to blue */
+    bottom: 0; /* Changed from -4px */
     left: 0;
-    width: 50px;
+    width: 100%; /* Changed from 50px to match text width */
+}
+
+/* For better mobile display */
+@media (max-width: 640px) {
+    .timeline-item h3 {
+        display: block; /* Full width on small screens */
+    }
+    
+    .sidebar .grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Style improvements for the key achievements section */
+.timeline-item h4 {
+    color: #1e40af; /* Match your blue theme */
+    margin-top: 16px;
+    margin-bottom: 12px;
+}
+
+.timeline-item ul {
+    margin-left: 10px;
+}
+
+.timeline-item ul li {
+    margin-bottom: 8px;
+    position: relative;
 }
 
 /* Skill tags */
@@ -249,23 +364,19 @@ button:active {
     animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1023px) {
+/* Fix sidebar stickiness */
+@media (min-height: 700px) {
     .sidebar {
-        height: auto;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+    }
+}
+
+@media (max-height: 699px) {
+    .sidebar {
         position: relative;
-    }
-    
-    .timeline-container::before {
-        left: 0;
-    }
-    
-    .timeline-item {
-        padding-left: 0;
-    }
-    
-    .timeline-item::before {
-        left: -20px;
+        height: auto;
     }
 }
 
@@ -318,4 +429,24 @@ button:active {
 /* Add scroll animation script */
 .scroll-animation-script {
     display: none;
+}
+
+/* Hide/show elements based on resume type */
+.product-specific, .sap-specific {
+    transition: opacity 0.3s ease, max-height 0.5s ease;
+}
+
+[data-resume-type="product"] .sap-specific,
+[data-resume-type="sap"] .product-specific {
+    display: none;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+[data-resume-type="product"] .product-specific,
+[data-resume-type="sap"] .sap-specific {
+    display: block;
+    max-height: 1000px;
+    opacity: 1;
 }
