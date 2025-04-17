@@ -256,9 +256,17 @@
 <section id="experience" class="mb-10">
     <div class="bg-white rounded-lg shadow-md p-6 content-card">
         <h2 class="text-2xl font-bold text-blue-900 mb-4">Professional Experience</h2>
+        
+        <!-- D3.js Experience Visualization -->
+        <div class="mb-8">
+            <h3 class="text-lg font-bold text-blue-700 mb-3">Career Timeline</h3>
+            <div id="experience-visualization" class="w-full h-400 border border-gray-200 rounded-lg p-2 bg-white"></div>
+            <p class="text-sm text-gray-500 italic mt-2 text-center">Interactive visualization - click on timeline items to navigate to details</p>
+        </div>
+        
         <div class="timeline-container">
             <!-- Experience 1 -->
-            <div class="timeline-item" data-resume-type="both">
+            <div id="oursails-experience" class="timeline-item" data-resume-type="both">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Head of Product & Co-founder</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -285,7 +293,7 @@
             </div>
             
             <!-- Experience 2 -->
-            <div class="timeline-item" data-resume-type="both">
+            <div id="avertra-product-ops" class="timeline-item" data-resume-type="both">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Product Operations Manager</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -322,7 +330,7 @@
             </div>
             
             <!-- Experience 3 - Halifax Water -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="halifax-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Product Owner - Halifax Water</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -347,7 +355,7 @@
             </div>
             
             <!-- Experience 4 - Southwest Gas -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="swg-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Process Engineer - Southwest Gas (SWG)</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -372,7 +380,7 @@
             </div>
             
             <!-- Experience 5 - Puget Sound Energy -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="pse-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Product Owner - Puget Sound Energy (PSE)</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -398,7 +406,7 @@
             </div>
             
             <!-- Experience 6 - Loudoun Water -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="loudoun-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Product Owner - Loudoun Water</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -422,7 +430,7 @@
                 </ul>
             </div>
             
-            <div class="timeline-item product-specific" data-resume-type="product">
+            <div id="avertra-product-owner" class="timeline-item product-specific" data-resume-type="product">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Product Owner</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -449,7 +457,7 @@
             </div>
             
             <!-- Experience 8 - National Fuel & Gas -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="hcl-nfg-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">SAP ISU Device Management Consultant - National Fuel & Gas</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -474,7 +482,7 @@
             </div>
             
             <!-- Experience 9 - Hydro One -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="hcl-hydro-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">SAP ISU Device Management & MDA Consultant - Hydro One</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -499,7 +507,7 @@
             </div>
             
             <!-- Experience 10 - Fortis BC -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="hcl-fortis-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Functional SAP & Self-Service Portal Consultant - Fortis BC</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -525,7 +533,7 @@
             </div>
             
             <!-- Experience 11 - Early SAP -->
-            <div class="timeline-item sap-specific" data-resume-type="sap">
+            <div id="hcl-dev-experience" class="timeline-item sap-specific" data-resume-type="sap">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">SAP ISU Solutions Development Consultant</h3>
                     <div class="flex flex-col sm:flex-row sm:items-center text-gray-600 mt-1">
@@ -549,7 +557,7 @@
             </div>
             
             <!-- Experience 12 - HCL Generic (for Product Resume) -->
-            <div class="timeline-item product-specific" data-resume-type="product">
+            <div id="hcl-experience" class="timeline-item product-specific" data-resume-type="product">
                 <div class="mb-4">
                     <h3 class="text-xl font-bold">Additional Experience</h3>
                 </div>
@@ -723,6 +731,7 @@
 
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     
     <!-- Custom JavaScript -->
     <script src="./js/script.js"></script>
@@ -730,5 +739,6 @@
     <script src="./js/resume-switcher.js"></script>
     <script src="./js/active-section-highlight.js"></script>
     <script src="./js/experience-switcher.js"></script>
+    <script src="./js/experience-visualization.js"></script>
 </body>
 </html>

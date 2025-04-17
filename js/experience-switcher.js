@@ -41,6 +41,11 @@ if (typeof originalUpdateResumeUI === 'function') {
         
         // Then update the experience section
         updateExperienceSection(resumeType);
+        
+        // Update visualization if the function exists
+        if (typeof initExperienceVisualization === 'function') {
+            initExperienceVisualization(resumeType);
+        }
     };
 } else {
     // If the original function isn't available yet, set up a function
@@ -52,6 +57,11 @@ if (typeof originalUpdateResumeUI === 'function') {
                 window.updateResumeUI = function(resumeType) {
                     originalFunc(resumeType);
                     updateExperienceSection(resumeType);
+                    
+                    // Update visualization if the function exists
+                    if (typeof initExperienceVisualization === 'function') {
+                        initExperienceVisualization(resumeType);
+                    }
                 };
                 
                 // Initial call to update experience section
