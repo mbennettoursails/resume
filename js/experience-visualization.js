@@ -251,7 +251,7 @@ function getExperienceData(resumeType) {
             startDate: new Date('2023-01-01'),
             endDate: new Date('2024-12-31'),
             description: 'Co-founded a SaaS startup, managing product development and operations with lean methodologies.',
-            color: '#1e40af',
+            color: '#8b5cf6',
             showLabel: true,
             elementId: 'oursails-experience'
         },
@@ -261,7 +261,7 @@ function getExperienceData(resumeType) {
             startDate: new Date('2021-01-01'),
             endDate: new Date('2023-01-01'),
             description: 'Managed product portfolio for a global team and established standards for product road mapping.',
-            color: '#1e40af',
+            color: '#8b5cf6',
             showLabel: true,
             elementId: 'avertra-product-ops'
         }
@@ -271,45 +271,16 @@ function getExperienceData(resumeType) {
     const sapData = [
         {
             company: 'Avertra Corp',
-            title: 'Product Owner - Halifax Water',
-            startDate: new Date('2020-01-01'),
-            endDate: new Date('2021-01-01'),
-            description: 'Led MiCustomer platform integration with SAP backend systems for utility company.',
-            color: '#3b82f6',
-            showLabel: false,
-            elementId: 'halifax-experience'
-        },
-        {
-            company: 'Avertra Corp',
-            title: 'Process Engineer - SWG',
-            startDate: new Date('2019-01-01'),
-            endDate: new Date('2020-01-01'),
-            description: 'Designed BPMN 2.0 workflows to automate SAP BPEM exception handling.',
-            color: '#3b82f6',
-            showLabel: false,
-            elementId: 'swg-experience'
-        },
-        {
-            company: 'Avertra Corp',
-            title: 'Product Owner - PSE',
-            startDate: new Date('2017-01-01'),
-            endDate: new Date('2018-12-31'),
-            description: 'Translated SAP-specific requirements into technical specifications for development teams.',
-            color: '#3b82f6',
-            showLabel: false,
-            elementId: 'pse-experience'
-        },
-        {
-            company: 'Avertra Corp',
-            title: 'Product Owner - Loudoun Water',
+            title: 'Product Owner',
             startDate: new Date('2016-01-01'),
-            endDate: new Date('2018-12-31'),
-            description: 'Managed MiCustomer platform with focus on SAP IS-U integration points.',
-            color: '#3b82f6',
-            showLabel: false,
-            elementId: 'loudoun-experience'
+            endDate: new Date('2021-01-01'),
+            description: 'Managed product development for MiCustomer platform, spearheading six product developments.',
+            color: '#1e40af',
+            showLabel: true,
+            elementId: 'avertra-product-owner'
         },
         {
+            
             company: 'HCL',
             title: 'SAP ISU Consultant - National Fuel & Gas',
             startDate: new Date('2014-01-01'),
@@ -353,15 +324,46 @@ function getExperienceData(resumeType) {
     
     // Product-specific experience
     const productData = [
+     
         {
             company: 'Avertra Corp',
-            title: 'Product Owner',
-            startDate: new Date('2016-01-01'),
+            title: 'Product Owner - Halifax Water',
+            startDate: new Date('2020-01-01'),
             endDate: new Date('2021-01-01'),
-            description: 'Managed product development for MiCustomer platform, spearheading six product developments.',
-            color: '#1e40af',
-            showLabel: true,
-            elementId: 'avertra-product-owner'
+            description: 'Led MiCustomer platform integration with SAP backend systems for utility company.',
+            color: '#3b82f6',
+            showLabel: false,
+            elementId: 'halifax-experience'
+        },
+        {
+            company: 'Avertra Corp',
+            title: 'Process Engineer - SWG',
+            startDate: new Date('2019-01-01'),
+            endDate: new Date('2020-01-01'),
+            description: 'Designed BPMN 2.0 workflows to automate SAP BPEM exception handling.',
+            color: '#3b82f6',
+            showLabel: false,
+            elementId: 'swg-experience'
+        },
+        {
+            company: 'Avertra Corp',
+            title: 'Product Owner - PSE',
+            startDate: new Date('2017-01-01'),
+            endDate: new Date('2018-12-31'),
+            description: 'Translated SAP-specific requirements into technical specifications for development teams.',
+            color: '#3b82f6',
+            showLabel: false,
+            elementId: 'pse-experience'
+        },
+        {
+            company: 'Avertra Corp',
+            title: 'Product Owner - Loudoun Water',
+            startDate: new Date('2016-01-01'),
+            endDate: new Date('2018-12-31'),
+            description: 'Managed MiCustomer platform with focus on SAP IS-U integration points.',
+            color: '#3b82f6',
+            showLabel: false,
+            elementId: 'loudoun-experience'
         },
         {
             company: 'HCL',
