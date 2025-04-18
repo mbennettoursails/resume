@@ -19,6 +19,7 @@
             align-items: center;
             justify-content: center;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
         }
         .entry-card {
             background: rgba(255, 255, 255, 0.95);
@@ -26,6 +27,8 @@
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
         }
         .entry-card:hover {
             transform: translateY(-5px);
@@ -64,79 +67,6 @@
             transform: scale(1);
             opacity: 1;
         }
-        /* Animated background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .bg-animation span {
-            position: absolute;
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 50%;
-            animation: animate 25s linear infinite;
-        }
-        .bg-animation span:nth-child(1) {
-            top: 20%;
-            left: 60%;
-            animation-delay: 0s;
-            animation-duration: 15s;
-        }
-        .bg-animation span:nth-child(2) {
-            top: 60%;
-            left: 30%;
-            animation-delay: 2s;
-            animation-duration: 20s;
-            width: 40px;
-            height: 40px;
-        }
-        .bg-animation span:nth-child(3) {
-            top: 40%;
-            left: 80%;
-            animation-delay: 4s;
-            animation-duration: 18s;
-            width: 25px;
-            height: 25px;
-        }
-        .bg-animation span:nth-child(4) {
-            top: 80%;
-            left: 70%;
-            animation-delay: 6s;
-            animation-duration: 22s;
-            width: 35px;
-            height: 35px;
-        }
-        .bg-animation span:nth-child(5) {
-            top: 30%;
-            left: 20%;
-            animation-delay: 8s;
-            animation-duration: 17s;
-            width: 30px;
-            height: 30px;
-        }
-        @keyframes animate {
-            0% {
-                transform: scale(0) translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1) translateY(-500px) rotate(360deg);
-                opacity: 0;
-            }
-        }
         .logo {
             background: linear-gradient(45deg, #3b82f6, #1e40af);
             -webkit-background-clip: text;
@@ -145,21 +75,332 @@
             font-weight: 800;
             letter-spacing: -1px;
         }
+
+        /* Enhanced background styles */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            background: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
+        }
+        
+        /* Grid pattern */
+        .grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        
+        /* Gradient blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: 1;
+            animation: pulse 15s ease-in-out infinite alternate;
+        }
+        
+        #blob1 {
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.3) 70%);
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        
+        #blob2 {
+            width: 35vw;
+            height: 35vw;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.8) 0%, rgba(67, 56, 202, 0.3) 70%);
+            bottom: -10%;
+            right: 5%;
+            animation-delay: -5s;
+        }
+        
+        #blob3 {
+            width: 25vw;
+            height: 25vw;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.8) 0%, rgba(5, 150, 105, 0.3) 70%);
+            top: 50%;
+            left: 60%;
+            animation-delay: -10s;
+        }
+        
+        /* Wave effect */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%233b82f6" fill-opacity="0.05" d="M0,192L48,197.3C96,203,192,213,288,202.7C384,192,480,160,576,170.7C672,181,768,235,864,234.7C960,235,1056,181,1152,170.7C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+            background-size: 1440px 100px;
+            z-index: 3;
+            animation: wave 15s linear infinite;
+        }
+        
+        .wave-2 {
+            bottom: 0;
+            animation: wave-2 20s linear infinite;
+            opacity: 0.7;
+            z-index: 2;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translate(var(--move-x), var(--move-y)) rotate(var(--rotate));
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+            50% {
+                transform: scale(1.1) translate(var(--move-x), var(--move-y));
+            }
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+        }
+        
+        @keyframes wave {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: 1440px;
+            }
+        }
+        
+        @keyframes wave-2 {
+            0% {
+                background-position-x: 1440px;
+            }
+            100% {
+                background-position-x: 0;
+            }
+        }
+
+        /* White Rabbit Easter Egg Styles */
+        #white-rabbit {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            z-index: 2000;
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+        }
+
+        #white-rabbit svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        #white-rabbit svg path,
+        #white-rabbit svg polyline,
+        #white-rabbit svg circle {
+            stroke: white;
+        }
+
+        #rabbit-hole {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100vw;
+            height: 100vw;
+            max-width: 100%;
+            max-height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 70%);
+            border-radius: 50%;
+            z-index: 9000;
+            pointer-events: none;
+            transition: transform 3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .rabbit-hole-active {
+            transform: translate(-50%, -50%) scale(1.5) !important;
+        }
+
+        .rabbit-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            z-index: 9001;
+            opacity: 0;
+            transition: opacity 1s ease;
+            width: 80%;
+            max-width: 500px;
+            pointer-events: none;
+        }
+
+        .watch-animation {
+            animation: watch-tick 1s infinite;
+            display: inline-block;
+            transform-origin: center;
+        }
+
+        @keyframes watch-tick {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        #rabbit-quote {
+            font-style: italic;
+            margin: 1rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+        #rabbit-quote.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .secret-btn {
+            padding: 0.5rem 1rem;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: auto;
+        }
+
+        .secret-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .secret-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Rabbit hop animation */
+        @keyframes rabbit-hop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Clock animation */
+        #clock-wrapper {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            cursor: pointer;
+        }
+
+        #pocket-watch {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16.2,16.2L11,13V7h1.5v5.2l4.5,2.7L16.2,16.2z"/><path d="M12,1c-0.6,0-1,0.4-1,1v1h2V2C13,1.4,12.6,1,12,1z"/><path d="M15,3c0,0-1.5-1-3-1s-3,1-3,1H6v3h12V3H15z"/></svg>');
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+            animation: pocket-watch-swing 3s ease-in-out infinite alternate;
+            transform-origin: center 5px;
+        }
+
+        @keyframes pocket-watch-swing {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+    <!-- White Rabbit Easter Egg Elements -->
+    <div id="white-rabbit">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <rect width="256" height="256" fill="none"/>
+            <circle cx="100" cy="164" r="12"/>
+            <circle cx="156" cy="164" r="12"/>
+            <polyline points="144 200 128 213.31 112 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+            <path d="M146.56,98.73C152.16,72.39,167,16,190.94,16c28.22,0,18.27,65.06-6.91,113" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+            <path d="M109.44,98.73C103.84,72.39,89,16,65.06,16,36.84,16,46.79,81.06,72,129" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+            <path d="M191.71,153.82A44,44,0,1,1,128,213.3a44,44,0,1,1-63.71-59.48,64,64,0,0,1,127.42,0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+        </svg>
+    </div>
+    <div id="clock-wrapper">
+        <div id="pocket-watch"></div>
+    </div>
+    <div id="rabbit-hole"></div>
+    <div class="rabbit-message" id="rabbit-message">
+        <h2>"I'm late! I'm late!" <span class="watch-animation">⏱️</span></h2>
+        <p id="rabbit-quote">Curiosity often leads to wonderful places...</p>
+        <button id="secret-btn" class="secret-btn">Take the Red Pill</button>
+    </div>
+
+    <!-- Enhanced Background -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="blob" id="blob1" style="--move-x: 5%; --move-y: 10%;"></div>
+        <div class="blob" id="blob2" style="--move-x: -8%; --move-y: -5%;"></div>
+        <div class="blob" id="blob3" style="--move-x: 3%; --move-y: -8%;"></div>
+        <div class="particles" id="particles"></div>
+        <div class="wave"></div>
+        <div class="wave wave-2"></div>
     </div>
 
     <div class="container mx-auto px-4">
@@ -208,6 +449,56 @@
             const answerInput = document.getElementById('answer');
             const messageDiv = document.getElementById('message');
             
+            // Create particles
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 25;
+            
+            for (let i = 0; i < particleCount; i++) {
+                createParticle();
+            }
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 5px and 25px
+                const size = 5 + Math.random() * 20;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random starting position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                
+                // Random movement distance
+                const moveX = -50 + Math.random() * 100;
+                const moveY = -100 - Math.random() * 200; // Mainly move upward
+                particle.style.setProperty('--move-x', `${moveX}%`);
+                particle.style.setProperty('--move-y', `${moveY}%`);
+                
+                // Random rotation
+                const rotate = -360 + Math.random() * 720;
+                particle.style.setProperty('--rotate', `${rotate}deg`);
+                
+                // Random animation duration between 15s and 40s
+                const duration = 15 + Math.random() * 25;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 20;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+                
+                // Remove and recreate particle when animation ends
+                setTimeout(() => {
+                    particle.remove();
+                    createParticle();
+                }, (delay + duration) * 1000);
+            }
+            
             // Correct answers (accepting multiple variations)
             const correctAnswers = ['rabbit', 'RABBIT', 'Rabbit', 'white rabbit', 'White Rabbit', 'WHITE RABBIT'];
             
@@ -222,10 +513,18 @@
                     messageDiv.className = 'text-center py-2 rounded-lg mb-4 text-green-700 bg-green-100';
                     messageDiv.style.display = 'block';
                     
-                    // Redirect after a short delay
+                    // Start White Rabbit animation
+                    startWhiteRabbitAnimation();
+                    
+                    // Show clock after delay
+                    setTimeout(() => {
+                        document.getElementById('clock-wrapper').style.opacity = '1';
+                    }, 3000);
+                    
+                    // Redirect after a longer delay (allowing time to see the rabbit)
                     setTimeout(function() {
                         window.location.href = 'resume.html';
-                    }, 1500);
+                    }, 5000);
                 } else {
                     // Wrong answer
                     messageDiv.textContent = 'Incorrect. Please try again.';
@@ -240,6 +539,83 @@
                     setTimeout(function() {
                         messageDiv.style.display = 'none';
                     }, 3000);
+                }
+            });
+            
+            // White Rabbit Easter Egg
+            function startWhiteRabbitAnimation() {
+                const whiteRabbit = document.getElementById('white-rabbit');
+                whiteRabbit.style.opacity = '1';
+                
+                // Starting position (near bottom center)
+                whiteRabbit.style.bottom = '20px';
+                whiteRabbit.style.left = '50%';
+                whiteRabbit.style.transform = 'translateX(-50%)';
+                
+                // Add hopping animation
+                whiteRabbit.style.animation = 'rabbit-hop 0.6s infinite';
+                
+                // Animate the rabbit hopping across the screen
+                setTimeout(() => {
+                    whiteRabbit.style.transition = 'all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    whiteRabbit.style.bottom = '60px';
+                    whiteRabbit.style.left = '60%';
+                }, 500);
+                
+                setTimeout(() => {
+                    whiteRabbit.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    whiteRabbit.style.bottom = '30px';
+                    whiteRabbit.style.left = '70%';
+                }, 1500);
+                
+                setTimeout(() => {
+                    whiteRabbit.style.transition = 'all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    whiteRabbit.style.bottom = '100px';
+                    whiteRabbit.style.left = '85%';
+                }, 2300);
+                
+                setTimeout(() => {
+                    whiteRabbit.style.transition = 'all 0.5s ease';
+                    whiteRabbit.style.opacity = '0';
+                }, 3500);
+            }
+            
+            // Setup deeper rabbit hole easter egg
+            document.getElementById('clock-wrapper').addEventListener('click', function() {
+                const rabbitHole = document.getElementById('rabbit-hole');
+                const rabbitMessage = document.getElementById('rabbit-message');
+                
+                // Activate rabbit hole animation
+                rabbitHole.classList.add('rabbit-hole-active');
+                
+                // Show message after a delay
+                setTimeout(() => {
+                    rabbitMessage.style.opacity = '1';
+                    
+                    // Reveal quote with delay
+                    setTimeout(() => {
+                        document.getElementById('rabbit-quote').classList.add('visible');
+                        
+                        // Show button after quote
+                        setTimeout(() => {
+                            document.getElementById('secret-btn').classList.add('visible');
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            });
+            
+            // Add secret link behavior
+            document.getElementById('secret-btn').addEventListener('click', function() {
+                // Navigate to a special URL or show special content
+                window.open('https://www.youtube.com/watch?v=zE7PKRjrid4', '_blank');
+            });
+            
+            // Make the rabbit clickable too
+            document.getElementById('white-rabbit').addEventListener('click', function() {
+                // If the clock is visible, trigger its click event
+                const clockWrapper = document.getElementById('clock-wrapper');
+                if (clockWrapper.style.opacity !== '0') {
+                    clockWrapper.click();
                 }
             });
             
