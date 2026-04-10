@@ -1,627 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matt Bennett - Entry</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="icon" href="./images/favicon/favicon.ico" sizes="any">
-    <link rel="icon" href="./images/favicon/favicon-32x32.png" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-    <meta name="theme-color" content="#1a4fc7">
-    <style>
-        body {
-            background-color: #f9fafb;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            overflow-x: hidden;
-        }
-        .entry-card {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 10;
-        }
-        .entry-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        .answer-input {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .answer-input:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-        }
-        .glow-button {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .glow-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-        }
-        .glow-button:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
-            transform: scale(0);
-            opacity: 0;
-            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s;
-        }
-        .glow-button:hover:before {
-            transform: scale(1);
-            opacity: 1;
-        }
-        .logo {
-            background: linear-gradient(45deg, #3b82f6, #1e40af);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matt Bennett — Product Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="./images/favicon/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0d0f14">
+<meta name="description" content="Matt Bennett — Strategic Product Leader & SAP Consultant with 10+ years experience. Based in Yokohama, Japan.">
+<style>
+  :root {
+    --ink: #0d0f14;
+    --ink-2: #3a3d47;
+    --ink-3: #7a7d87;
+    --paper: #f5f2ec;
+    --paper-2: #ede9e1;
+    --rule: rgba(13,15,20,0.1);
+    --blue: #1a4fc7;
+    --blue-light: #e8eefb;
+    --blue-mid: #3b6fd4;
+    --accent: #c8a96e;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-        /* Enhanced background styles */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-            background: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
-        }
-        
-        /* Grid pattern */
-        .grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(226, 232, 240, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.3;
-            z-index: 1;
-        }
-        
-        /* Floating particles */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-        
-        .particle {
-            position: absolute;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 50%;
-            animation: float linear infinite;
-        }
-        
-        /* Gradient blobs */
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            z-index: 1;
-            animation: pulse 15s ease-in-out infinite alternate;
-        }
-        
-        #blob1 {
-            width: 40vw;
-            height: 40vw;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.3) 70%);
-            top: 10%;
-            left: -10%;
-            animation-delay: 0s;
-        }
-        
-        #blob2 {
-            width: 35vw;
-            height: 35vw;
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.8) 0%, rgba(67, 56, 202, 0.3) 70%);
-            bottom: -10%;
-            right: 5%;
-            animation-delay: -5s;
-        }
-        
-        #blob3 {
-            width: 25vw;
-            height: 25vw;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.8) 0%, rgba(5, 150, 105, 0.3) 70%);
-            top: 50%;
-            left: 60%;
-            animation-delay: -10s;
-        }
-        
-        /* Wave effect */
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%233b82f6" fill-opacity="0.05" d="M0,192L48,197.3C96,203,192,213,288,202.7C384,192,480,160,576,170.7C672,181,768,235,864,234.7C960,235,1056,181,1152,170.7C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
-            background-size: 1440px 100px;
-            z-index: 3;
-            animation: wave 15s linear infinite;
-        }
-        
-        .wave-2 {
-            bottom: 0;
-            animation: wave-2 20s linear infinite;
-            opacity: 0.7;
-            z-index: 2;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translate(var(--move-x), var(--move-y)) rotate(var(--rotate));
-                opacity: 0;
-            }
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1) translate(0, 0);
-            }
-            50% {
-                transform: scale(1.1) translate(var(--move-x), var(--move-y));
-            }
-            100% {
-                transform: scale(1) translate(0, 0);
-            }
-        }
-        
-        @keyframes wave {
-            0% {
-                background-position-x: 0;
-            }
-            100% {
-                background-position-x: 1440px;
-            }
-        }
-        
-        @keyframes wave-2 {
-            0% {
-                background-position-x: 1440px;
-            }
-            100% {
-                background-position-x: 0;
-            }
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* White Rabbit Easter Egg Styles */
-        #white-rabbit {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            z-index: 2000;
-            opacity: 0;
-            cursor: pointer;
-            transition: opacity 0.5s ease;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-        }
+  html { height: 100%; }
 
-        #white-rabbit svg {
-            width: 100%;
-            height: 100%;
-        }
+  body {
+    font-family: var(--sans);
+    background: var(--ink);
+    color: var(--paper);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
 
-        #white-rabbit svg path,
-        #white-rabbit svg polyline,
-        #white-rabbit svg circle {
-            stroke: white;
-        }
+  /* ── Background ── */
+  .bg-field {
+    position: fixed; inset: 0; z-index: 0;
+    background: var(--ink);
+    overflow: hidden;
+  }
+  .bg-field::before {
+    content: '';
+    position: absolute;
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,79,199,0.18) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  .bg-field::after {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.1) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+    animation: drift 24s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(40px, 30px) scale(1.05); }
+  }
 
-        #rabbit-hole {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 100vw;
-            height: 100vw;
-            max-width: 100%;
-            max-height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 70%);
-            border-radius: 50%;
-            z-index: 9000;
-            pointer-events: none;
-            transition: transform 3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
+  /* Subtle grid lines */
+  .grid-overlay {
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
 
-        .rabbit-hole-active {
-            transform: translate(-50%, -50%) scale(1.5) !important;
-        }
+  /* ── Layout ── */
+  .stage {
+    position: relative; z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+  }
 
-        .rabbit-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 1.5rem;
-            text-align: center;
-            z-index: 9001;
-            opacity: 0;
-            transition: opacity 1s ease;
-            width: 80%;
-            max-width: 500px;
-            pointer-events: none;
-        }
+  .card {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 2.5rem 2.5rem 2rem;
+    backdrop-filter: blur(12px);
+    animation: card-in 0.8s var(--ease-out) both;
+  }
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-        .watch-animation {
-            animation: watch-tick 1s infinite;
-            display: inline-block;
-            transform-origin: center;
-        }
+  /* ── Identity ── */
+  .identity {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: card-in 0.9s var(--ease-out) 0.1s both;
+  }
 
-        @keyframes watch-tick {
-            0%, 100% { transform: rotate(-10deg); }
-            50% { transform: rotate(10deg); }
-        }
+  .monogram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(26,79,199,0.2);
+    font-family: var(--serif);
+    font-size: 22px;
+    color: #a8beec;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .monogram::after {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 50%;
+    border: 1px solid rgba(26,79,199,0.3);
+  }
 
-        #rabbit-quote {
-            font-style: italic;
-            margin: 1rem 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease;
-        }
+  .name {
+    font-family: var(--serif);
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+  }
 
-        #rabbit-quote.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  .role-line {
+    font-size: 0.8125rem;
+    font-weight: 300;
+    color: rgba(245,242,236,0.5);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
 
-        .secret-btn {
-            padding: 0.5rem 1rem;
-            background: white;
-            color: black;
-            border: none;
-            border-radius: 0.25rem;
-            margin-top: 1rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            pointer-events: auto;
-        }
+  .role-line span {
+    color: var(--accent);
+  }
 
-        .secret-btn:hover {
-            background: #f0f0f0;
-            transform: translateY(-2px) scale(1.05);
-        }
+  /* ── Divider ── */
+  .rule {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 1.75rem 0;
+  }
 
-        .secret-btn.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  /* ── Choose path ── */
+  .path-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.35);
+    margin-bottom: 0.875rem;
+  }
 
-        /* Rabbit hop animation */
-        @keyframes rabbit-hop {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+  .path-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    animation: card-in 1s var(--ease-out) 0.2s both;
+  }
 
-        /* Clock animation */
-        #clock-wrapper {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 60px;
-            height: 60px;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            cursor: pointer;
-        }
+  .path-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.125rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: var(--paper);
+    text-decoration: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .path-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+  }
+  .path-btn:active { transform: translateY(0); }
 
-        #pocket-watch {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16.2,16.2L11,13V7h1.5v5.2l4.5,2.7L16.2,16.2z"/><path d="M12,1c-0.6,0-1,0.4-1,1v1h2V2C13,1.4,12.6,1,12,1z"/><path d="M15,3c0,0-1.5-1-3-1s-3,1-3,1H6v3h12V3H15z"/></svg>');
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
-            animation: pocket-watch-swing 3s ease-in-out infinite alternate;
-            transform-origin: center 5px;
-        }
+  .path-btn.primary {
+    background: rgba(26,79,199,0.25);
+    border-color: rgba(59,111,212,0.5);
+  }
+  .path-btn.primary:hover {
+    background: rgba(26,79,199,0.35);
+    border-color: rgba(59,111,212,0.7);
+  }
 
-        @keyframes pocket-watch-swing {
-            0% { transform: rotate(-5deg); }
-            100% { transform: rotate(5deg); }
-        }
-    </style>
+  .path-icon {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .path-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--paper);
+    margin-bottom: 0.2rem;
+  }
+
+  .path-desc {
+    font-size: 0.6875rem;
+    color: rgba(245,242,236,0.45);
+    font-weight: 300;
+    line-height: 1.3;
+  }
+
+  .path-btn-wide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: transparent;
+    color: rgba(245,242,236,0.55);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    cursor: pointer;
+    font-family: var(--sans);
+    width: 100%;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    animation: card-in 1s var(--ease-out) 0.3s both;
+  }
+  .path-btn-wide:hover {
+    background: rgba(255,255,255,0.04);
+    color: rgba(245,242,236,0.8);
+    border-color: rgba(255,255,255,0.14);
+  }
+
+  /* ── Status strip ── */
+  .status-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    animation: card-in 1s var(--ease-out) 0.4s both;
+  }
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.6875rem;
+    font-weight: 300;
+    color: rgba(245,242,236,0.35);
+    letter-spacing: 0.04em;
+  }
+  .status-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #3fc88a;
+    box-shadow: 0 0 6px #3fc88a;
+    animation: blink 2.5s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .status-sep { color: rgba(245,242,236,0.15); }
+
+  /* ── Easter egg trigger ── */
+  .egg-trigger {
+    margin-top: 1.25rem;
+    text-align: center;
+    animation: card-in 1s var(--ease-out) 0.5s both;
+  }
+  .egg-link {
+    font-size: 0.6875rem;
+    color: rgba(245,242,236,0.18);
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    font-family: var(--sans);
+  }
+  .egg-link:hover { color: rgba(200,169,110,0.6); }
+
+  /* ── Riddle overlay ── */
+  .riddle-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(13,15,20,0.92);
+    backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .riddle-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .riddle-card {
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.4s var(--ease-out);
+  }
+  .riddle-overlay.open .riddle-card {
+    transform: translateY(0) scale(1);
+  }
+
+  .rabbit-icon {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    display: block;
+    animation: hop 1.2s ease-in-out infinite;
+  }
+  @keyframes hop {
+    0%, 100% { transform: translateY(0); }
+    45% { transform: translateY(-10px); }
+    55% { transform: translateY(-10px); }
+  }
+
+  .riddle-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+  .riddle-prompt {
+    font-size: 0.875rem;
+    color: rgba(245,242,236,0.5);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+  .riddle-phrase {
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    color: var(--paper);
+    margin-bottom: 0.375rem;
+  }
+  .riddle-blank { color: var(--accent); }
+  .riddle-hint {
+    font-size: 0.6875rem;
+    color: rgba(245,242,236,0.3);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .riddle-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.9375rem;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 0.75rem;
+  }
+  .riddle-input:focus {
+    border-color: rgba(59,111,212,0.6);
+    box-shadow: 0 0 0 3px rgba(26,79,199,0.15);
+  }
+  .riddle-input.error {
+    border-color: rgba(220,80,80,0.6);
+    animation: shake 0.3s;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+  .riddle-input.success {
+    border-color: rgba(63,200,138,0.6);
+  }
+
+  .riddle-submit {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 10px;
+    background: rgba(26,79,199,0.4);
+    border: 1px solid rgba(59,111,212,0.4);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-bottom: 0.875rem;
+  }
+  .riddle-submit:hover { background: rgba(26,79,199,0.55); }
+
+  .riddle-msg {
+    font-size: 0.75rem;
+    min-height: 1rem;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+  .riddle-msg.ok { color: #3fc88a; }
+  .riddle-msg.bad { color: #e05050; }
+
+  .riddle-close {
+    font-size: 0.75rem;
+    color: rgba(245,242,236,0.25);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: color 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .riddle-close:hover { color: rgba(245,242,236,0.5); }
+
+  /* ── Rabbit run animation ── */
+  .rabbit-runner {
+    position: fixed;
+    bottom: 40px;
+    font-size: 2.5rem;
+    z-index: 200;
+    pointer-events: none;
+    display: none;
+    filter: drop-shadow(0 0 12px rgba(255,255,255,0.4));
+  }
+  .rabbit-runner.running {
+    display: block;
+    animation: run-across 3s var(--ease-out) forwards;
+  }
+  @keyframes run-across {
+    from { left: -80px; bottom: 40px; }
+    30% { bottom: 80px; }
+    60% { bottom: 35px; }
+    80% { bottom: 60px; }
+    to { left: calc(100% + 80px); bottom: 40px; }
+  }
+
+  /* ── Footer ── */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 1.25rem;
+    font-size: 0.6875rem;
+    color: rgba(245,242,236,0.2);
+    letter-spacing: 0.05em;
+  }
+  footer a { color: rgba(245,242,236,0.3); text-decoration: none; }
+  footer a:hover { color: rgba(245,242,236,0.5); }
+</style>
 </head>
 <body>
-    <!-- White Rabbit Easter Egg Elements -->
-    <div id="white-rabbit">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-            <rect width="256" height="256" fill="none"/>
-            <circle cx="100" cy="164" r="12"/>
-            <circle cx="156" cy="164" r="12"/>
-            <polyline points="144 200 128 213.31 112 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-            <path d="M146.56,98.73C152.16,72.39,167,16,190.94,16c28.22,0,18.27,65.06-6.91,113" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-            <path d="M109.44,98.73C103.84,72.39,89,16,65.06,16,36.84,16,46.79,81.06,72,129" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-            <path d="M191.71,153.82A44,44,0,1,1,128,213.3a44,44,0,1,1-63.71-59.48,64,64,0,0,1,127.42,0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-        </svg>
-    </div>
-    <div id="clock-wrapper">
-        <div id="pocket-watch"></div>
-    </div>
-    <div id="rabbit-hole"></div>
-    <div class="rabbit-message" id="rabbit-message">
-        <h2>"I'm late! I'm late!" <span class="watch-animation">⏱️</span></h2>
-        <p id="rabbit-quote">Curiosity often leads to wonderful places...</p>
-        <button id="secret-btn" class="secret-btn">Take the Red Pill</button>
+
+<div class="bg-field"></div>
+<div class="grid-overlay"></div>
+
+<div class="stage">
+  <div class="card">
+
+    <div class="identity">
+      <div class="monogram">MB</div>
+      <h1 class="name">Matt Bennett</h1>
+      <p class="role-line">Product Leader &nbsp;·&nbsp; SAP Consultant &nbsp;·&nbsp; <span>Yokohama</span></p>
     </div>
 
-    <!-- Enhanced Background -->
-    <div class="background">
-        <div class="grid"></div>
-        <div class="blob" id="blob1" style="--move-x: 5%; --move-y: 10%;"></div>
-        <div class="blob" id="blob2" style="--move-x: -8%; --move-y: -5%;"></div>
-        <div class="blob" id="blob3" style="--move-x: 3%; --move-y: -8%;"></div>
-        <div class="particles" id="particles"></div>
-        <div class="wave"></div>
-        <div class="wave wave-2"></div>
+    <hr class="rule">
+
+    <p class="path-label">View my profile as</p>
+
+    <div class="path-grid">
+      <a class="path-btn primary" href="resume.html?type=product">
+        <span class="path-icon">◈</span>
+        <span class="path-title">Product Leader</span>
+        <span class="path-desc">Strategy, roadmaps & team leadership</span>
+      </a>
+      <a class="path-btn" href="resume.html?type=sap">
+        <span class="path-icon">◇</span>
+        <span class="path-title">SAP Consultant</span>
+        <span class="path-desc">IS-U, device mgmt & integrations</span>
+      </a>
     </div>
 
-    <div class="container mx-auto px-4">
-        <div class="entry-card max-w-md mx-auto rounded-xl p-8">
-            
-            <div class="text-center mb-6">
-                <h1 class="logo text-4xl mb-2">Matt Bennett</h1>
-                <p class="text-gray-600">Product Leader & SAP Consultant</p>
-            </div>
-            
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r mb-6">
-                <h2 class="text-lg font-semibold text-blue-900 mb-2">Welcome</h2>
-                <p class="text-gray-700">To proceed to my professional profile, please solve this simple riddle:</p>
-            </div>
-            
-            <div class="p-4 bg-gray-50 rounded-lg mb-6">
-                <p class="text-xl text-center font-medium text-gray-800">
-                    "Follow the white <span class="text-blue-600">______</span>"
-                </p>
-                <p class="text-sm text-center text-gray-500 mt-2">
-                    Complete the famous phrase to continue
-                </p>
-            </div>
-            
-            <form id="riddle-form" class="mb-4">
-                <div class="mb-4">
-                    <input type="text" id="answer" class="answer-input w-full px-4 py-3 rounded-lg border focus:outline-none text-center" placeholder="Your answer..." autocomplete="off">
-                </div>
-                
-                <button type="submit" id="submit-btn" class="glow-button w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                    Submit
-                </button>
-            </form>
-            
-            <div id="message" class="hidden text-center py-2 rounded-lg mb-4"></div>
-            
-            <div class="text-center text-sm text-gray-500">
-                <p>Hint: Think of a classic children's story or a science fiction movie.</p>
-            </div>
-        </div>
+    <a class="path-btn-wide" href="https://calendly.com/mjbennett14/30min" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M5 1v3M11 1v3M2 7h12"/></svg>
+      Schedule a 30-minute call
+    </a>
+
+    <div class="status-strip">
+      <span class="status-item">
+        <span class="status-dot"></span>
+        Open to new roles
+      </span>
+      <span class="status-sep">·</span>
+      <span class="status-item">10+ yrs experience</span>
+      <span class="status-sep">·</span>
+      <span class="status-item">MBA + B.S. CIS</span>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('riddle-form');
-            const answerInput = document.getElementById('answer');
-            const messageDiv = document.getElementById('message');
-            
-            // Create particles
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 25;
-            
-            for (let i = 0; i < particleCount; i++) {
-                createParticle();
-            }
-            
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Random size between 5px and 25px
-                const size = 5 + Math.random() * 20;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random starting position
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                particle.style.left = `${x}%`;
-                particle.style.top = `${y}%`;
-                
-                // Random movement distance
-                const moveX = -50 + Math.random() * 100;
-                const moveY = -100 - Math.random() * 200; // Mainly move upward
-                particle.style.setProperty('--move-x', `${moveX}%`);
-                particle.style.setProperty('--move-y', `${moveY}%`);
-                
-                // Random rotation
-                const rotate = -360 + Math.random() * 720;
-                particle.style.setProperty('--rotate', `${rotate}deg`);
-                
-                // Random animation duration between 15s and 40s
-                const duration = 15 + Math.random() * 25;
-                particle.style.animationDuration = `${duration}s`;
-                
-                // Random delay
-                const delay = Math.random() * 20;
-                particle.style.animationDelay = `${delay}s`;
-                
-                particlesContainer.appendChild(particle);
-                
-                // Remove and recreate particle when animation ends
-                setTimeout(() => {
-                    particle.remove();
-                    createParticle();
-                }, (delay + duration) * 1000);
-            }
-            
-            // Correct answers (accepting multiple variations)
-            const correctAnswers = ['rabbit', 'RABBIT', 'Rabbit', 'white rabbit', 'White Rabbit', 'WHITE RABBIT'];
-            
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const userAnswer = answerInput.value.trim();
-                
-                if (correctAnswers.includes(userAnswer)) {
-                    // Success!
-                    messageDiv.textContent = 'Correct! Redirecting...';
-                    messageDiv.className = 'text-center py-2 rounded-lg mb-4 text-green-700 bg-green-100';
-                    messageDiv.style.display = 'block';
-                    
-                    // Start White Rabbit animation
-                    startWhiteRabbitAnimation();
-                    
-                    // Show clock after delay
-                    setTimeout(() => {
-                        document.getElementById('clock-wrapper').style.opacity = '1';
-                    }, 3000);
-                    
-                    // Redirect after a longer delay (allowing time to see the rabbit)
-                    setTimeout(function() {
-                        window.location.href = 'resume.html';
-                    }, 5000);
-                } else {
-                    // Wrong answer
-                    messageDiv.textContent = 'Incorrect. Please try again.';
-                    messageDiv.className = 'text-center py-2 rounded-lg mb-4 text-red-700 bg-red-100';
-                    messageDiv.style.display = 'block';
-                    
-                    // Clear input and focus
-                    answerInput.value = '';
-                    answerInput.focus();
-                    
-                    // Hide message after a delay
-                    setTimeout(function() {
-                        messageDiv.style.display = 'none';
-                    }, 3000);
-                }
-            });
-            
-            // White Rabbit Easter Egg
-            function startWhiteRabbitAnimation() {
-                const whiteRabbit = document.getElementById('white-rabbit');
-                whiteRabbit.style.opacity = '1';
-                
-                // Starting position (near bottom center)
-                whiteRabbit.style.bottom = '20px';
-                whiteRabbit.style.left = '50%';
-                whiteRabbit.style.transform = 'translateX(-50%)';
-                
-                // Add hopping animation
-                whiteRabbit.style.animation = 'rabbit-hop 0.6s infinite';
-                
-                // Animate the rabbit hopping across the screen
-                setTimeout(() => {
-                    whiteRabbit.style.transition = 'all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    whiteRabbit.style.bottom = '60px';
-                    whiteRabbit.style.left = '60%';
-                }, 500);
-                
-                setTimeout(() => {
-                    whiteRabbit.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    whiteRabbit.style.bottom = '30px';
-                    whiteRabbit.style.left = '70%';
-                }, 1500);
-                
-                setTimeout(() => {
-                    whiteRabbit.style.transition = 'all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    whiteRabbit.style.bottom = '100px';
-                    whiteRabbit.style.left = '85%';
-                }, 2300);
-                
-                setTimeout(() => {
-                    whiteRabbit.style.transition = 'all 0.5s ease';
-                    whiteRabbit.style.opacity = '0';
-                }, 3500);
-            }
-            
-            // Setup deeper rabbit hole easter egg
-            document.getElementById('clock-wrapper').addEventListener('click', function() {
-                const rabbitHole = document.getElementById('rabbit-hole');
-                const rabbitMessage = document.getElementById('rabbit-message');
-                
-                // Activate rabbit hole animation
-                rabbitHole.classList.add('rabbit-hole-active');
-                
-                // Show message after a delay
-                setTimeout(() => {
-                    rabbitMessage.style.opacity = '1';
-                    
-                    // Reveal quote with delay
-                    setTimeout(() => {
-                        document.getElementById('rabbit-quote').classList.add('visible');
-                        
-                        // Show button after quote
-                        setTimeout(() => {
-                            document.getElementById('secret-btn').classList.add('visible');
-                        }, 1000);
-                    }, 1000);
-                }, 1000);
-            });
-            
-            // Add secret link behavior
-            document.getElementById('secret-btn').addEventListener('click', function() {
-                // Navigate to a special URL or show special content
-                window.open('https://www.youtube.com/watch?v=zE7PKRjrid4', '_blank');
-            });
-            
-            // Make the rabbit clickable too
-            document.getElementById('white-rabbit').addEventListener('click', function() {
-                // If the clock is visible, trigger its click event
-                const clockWrapper = document.getElementById('clock-wrapper');
-                if (clockWrapper.style.opacity !== '0') {
-                    clockWrapper.click();
-                }
-            });
-            
-            // Focus input on page load
-            answerInput.focus();
-        });
-    </script>
+    <div class="egg-trigger">
+      <button class="egg-link" onclick="openRiddle()">follow the white rabbit →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Riddle overlay -->
+<div class="riddle-overlay" id="riddleOverlay" role="dialog" aria-modal="true">
+  <div class="riddle-card">
+    <span class="rabbit-icon">🐇</span>
+    <h2 class="riddle-title">The scenic route</h2>
+    <p class="riddle-prompt">Complete the phrase to unlock a little personality. Or just use the buttons above — no judgment.</p>
+    <p class="riddle-phrase">"Follow the white <span class="riddle-blank">______</span>"</p>
+    <p class="riddle-hint">Alice in Wonderland · The Matrix · your childhood</p>
+    <input class="riddle-input" id="riddleInput" type="text" placeholder="Your answer…" autocomplete="off" spellcheck="false">
+    <p class="riddle-msg" id="riddleMsg"></p>
+    <button class="riddle-submit" onclick="checkRiddle()">Submit</button>
+    <button class="riddle-close" onclick="closeRiddle()">← back to direct access</button>
+  </div>
+</div>
+
+<!-- Rabbit runner -->
+<div class="rabbit-runner" id="rabbitRunner">🐇</div>
+
+<footer>
+  <a href="https://www.linkedin.com/in/matt-bennett83" target="_blank">LinkedIn</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:mjbennett14@gmail.com">mjbennett14@gmail.com</a>
+  &nbsp;·&nbsp;
+  © 2025 Matt Bennett
+</footer>
+
+<script>
+  // Pass resume type to resume.html via localStorage
+  document.querySelectorAll('a[href^="resume.html"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const url = new URL(this.href, window.location.href);
+      const type = url.searchParams.get('type');
+      if (type) {
+        localStorage.setItem('resumeType', type);
+      }
+    });
+  });
+
+  function openRiddle() {
+    document.getElementById('riddleOverlay').classList.add('open');
+    setTimeout(() => document.getElementById('riddleInput').focus(), 400);
+  }
+
+  function closeRiddle() {
+    document.getElementById('riddleOverlay').classList.remove('open');
+    document.getElementById('riddleInput').value = '';
+    const msg = document.getElementById('riddleMsg');
+    msg.textContent = '';
+    msg.className = 'riddle-msg';
+  }
+
+  function checkRiddle() {
+    const val = document.getElementById('riddleInput').value.trim().toLowerCase();
+    const input = document.getElementById('riddleInput');
+    const msg = document.getElementById('riddleMsg');
+    const answers = ['rabbit', 'white rabbit'];
+
+    if (answers.includes(val)) {
+      input.className = 'riddle-input success';
+      msg.className = 'riddle-msg ok';
+      msg.textContent = 'Correct! Down the rabbit hole we go…';
+      closeRiddle();
+      // Run the rabbit animation
+      const runner = document.getElementById('rabbitRunner');
+      runner.classList.add('running');
+      setTimeout(() => {
+        runner.classList.remove('running');
+        window.location.href = 'resume.html';
+      }, 2800);
+    } else {
+      input.className = 'riddle-input error';
+      msg.className = 'riddle-msg bad';
+      msg.textContent = val.length ? 'Not quite — think floppy ears.' : 'Type something!';
+      setTimeout(() => {
+        input.className = 'riddle-input';
+        msg.textContent = '';
+        msg.className = 'riddle-msg';
+      }, 2500);
+    }
+  }
+
+  document.getElementById('riddleInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkRiddle();
+    if (e.key === 'Escape') closeRiddle();
+  });
+
+  document.getElementById('riddleOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeRiddle();
+  });
+</script>
 </body>
 </html>
